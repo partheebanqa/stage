@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "mobile_number": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "email",
+            "mobile_number"
+          ]
+        }
+      },
+      "required": [
+        "user"
+      ]
+    }
+  },
+  "required": [
+    "message",
+    "data"
+  ]
+}

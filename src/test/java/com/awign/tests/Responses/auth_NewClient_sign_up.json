@@ -1,0 +1,221 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "provider": {
+              "type": "string"
+            },
+            "uid": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "mobile_number": {
+              "type": "string"
+            },
+            "roles": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "ss_oms_id": {
+              "type": "string"
+            },
+            "ih_oms_id": {
+              "type": "string"
+            },
+            "supply_id": {
+              "type": "null"
+            },
+            "memberships": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "org_id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "domain": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string"
+                    },
+                    "owner_name": {
+                      "type": "string"
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "org_id",
+                    "name",
+                    "domain",
+                    "icon",
+                    "owner_name",
+                    "roles"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "org_id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "domain": {
+                      "type": "string"
+                    },
+                    "icon": {
+                      "type": "string"
+                    },
+                    "owner_name": {
+                      "type": "string"
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "org_id",
+                    "name",
+                    "domain",
+                    "icon",
+                    "owner_name",
+                    "roles"
+                  ]
+                }
+              ]
+            },
+            "name": {
+              "type": "string"
+            },
+            "permalink": {
+              "type": "null"
+            },
+            "image": {
+              "type": "string"
+            },
+            "fcm_token": {
+              "type": "null"
+            },
+            "mobile_number_verified": {
+              "type": "boolean"
+            },
+            "status": {
+              "type": "null"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "updated_at": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "provider",
+            "uid",
+            "email",
+            "mobile_number",
+            "roles",
+            "ss_oms_id",
+            "ih_oms_id",
+            "supply_id",
+            "memberships",
+            "name",
+            "permalink",
+            "image",
+            "fcm_token",
+            "mobile_number_verified",
+            "status",
+            "created_at",
+            "updated_at"
+          ]
+        },
+        "headers": {
+          "type": "object",
+          "properties": {
+            "access-token": {
+              "type": "string"
+            },
+            "client": {
+              "type": "string"
+            },
+            "uid": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "access-token",
+            "client",
+            "uid"
+          ]
+        }
+      },
+      "required": [
+        "user",
+        "headers"
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "message",
+    "data"
+  ]
+}

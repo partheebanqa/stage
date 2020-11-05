@@ -1,0 +1,47 @@
+{
+    "status": "success",
+    "message": "User sign up successful",
+    "data": {
+        "user": {
+            "id": 320,
+            "provider": "email",
+            "uid": "partheeban.moorthyeee@awign.com",
+            "email": "partheeban.moorthyeee@awign.com",
+            "mobile_number": "971199456",
+            "roles": [
+                "int-client"
+            ],
+            "ss_oms_id": null,
+            "ih_oms_id": null,
+            "supply_id": null,
+            "memberships": [
+                {
+                    "org_id": 127,
+                    "name": "testawigncompsdfasfeee",
+                    "domain": "testawigncompasdfsaf",
+                    "icon": "https://awign-production.s3.ap-south-1.amazonaws.com/awign/defaults/icons/t.png",
+                    "owner_name": "testqaprojecttestonesadfsaf",
+                    "roles": [
+                        "ext-owner",
+                        "ext-admin",
+                        "ext-manager",
+                        "ext-workforce"
+                    ]
+                }
+            ],
+            "name": "testqaprojecttestonesadfsaf",
+            "permalink": null,
+            "image": "https://awign-production.s3.ap-south-1.amazonaws.com/awign/defaults/icons/t.png",
+            "fcm_token": null,
+            "mobile_number_verified": false,
+            "status": null,
+            "created_at": "2020-02-24 06:39:37 UTC",
+            "updated_at": "2020-02-24 06:39:37 UTC"
+        },
+        "headers": {
+            "access-token": "5ftSFyRXWu01e9u9quKNvQ",
+            "client": "6b8dYEyhwANnbjsO5gCN0A",
+            "uid": "partheeban.moorthyeee@awign.com"
+        }
+    }
+}

@@ -1,0 +1,67 @@
+{
+"services": [
+	{
+        "sendSMS" :{
+            "ApiDescription": " Verify whether phone number is already registered with Awign.",
+            "httpMethod": "POST",
+            "uri": "http://core-api.awigntest.com/api/v1/sms/to_number",
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+			"statusCode": 200,
+            	"requestBody": {
+   							 "sms": {
+       						 "sender": "Backend",
+       						 "message": "Use 21428 as one time password (OTP) to verify your Awign account. Do not share this OTP with anyone for security reasons.",
+        						 "mobile_number": "9740199455"
+   									 }
+							},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true     	
+		}
+      }
+   ,
+	{
+        "sendEmail" :{
+           "httpMethod": "POST",
+            "uri": "http://core-api.awigntest.com/api/v1/email/",
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+			"statusCode": 202,
+            	"requestBody": {
+    						"email": {
+        					"service_provider": "sendgrid",
+        					"to": "partheeban.moorthy@awign.com",
+        					"body": "REGRESSION TEST MAIL",
+        					"reference_tag": "Test tag",
+        					"subject": "REGRESSION TEST EMAIL",
+        					"template_id": "5c990181-c87b-4c65-bae9-79e9945afd70"
+    			}
+},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true     	
+	       		
+			}
+     }
+	,
+	{
+        "sendPushNotification" :{
+           "httpMethod": "POST",
+            "uri": "http://core-api.awigntest.com/api/v1/notifications/",
+		    "apiHeader":["Content-Type"],
+			"statusCode": 200,
+            	"requestBody":
+						{
+    						"notification": {
+        						"title": "title",
+        						"notification_text": "Test Reminder message",
+        						"user_id": 2932286
+    							}
+						},
+	       	"responseCheck":["data.headers.client"],
+	       	"scenarioFlow": "",
+	       	"vertical":"",
+	       	"active": true    
+			}
+   }
+     ]
+}

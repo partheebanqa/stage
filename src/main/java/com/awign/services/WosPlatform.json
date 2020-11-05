@@ -1,0 +1,51 @@
+   {
+	"services": [
+	{
+        "addListing": {
+            "httpMethod": "POST",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID/clone",
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+		    "extractResponse":["req_id","req_status","req_vertical"],	    
+			"statusCode": 200,
+            	"requestBody": {"worklisting":{"execution_project_id":"5e5df27eec4f1533aa4eccfc","project_execution_source_id":"5e5df27eec4f1533aa4eccfe"},"clone_application_question":true,"clone_in_app_interview":true,"clone_in_app_training":true,"clone_telephonic_interview":true,"clone_webinar_training":true,"clone_pitch_demo":true,"clone_pitch_test":true,"clone_sample_lead_test":true},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}
+
+	},
+	{       
+	 "searchListings": {
+            "httpMethod": "POST",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/search",
+            "listing_type":"part_time_job", 
+            "execution_type":"work_in_college",
+            "project_id":"5f5875796b7016002d01afb1",
+            "extractResponse":["worklistings_id","worklistings_name","listing_type","execution_type","project_execution_source_id","listingsrc_execution_project_id"],	             
+		    "apiHeader":["Content-Type"],
+		    "object":"id",
+			"statusCode": 200,
+            "requestBody": {"conditions":[{"execution_project_id":{"operation":"eq","value":"5f5875796b7016002d01afb1"}}],"page":1,"limit":100},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}	
+	},
+	{       
+	 "getListing": {
+            "httpMethod": "GET",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID",
+            "listing_id":286,
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type"],
+			"statusCode": 200,
+            	"requestBody": {},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}	
+	}
+       
+]
+}

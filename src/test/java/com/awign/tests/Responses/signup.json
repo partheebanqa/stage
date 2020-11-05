@@ -1,0 +1,60 @@
+{
+    "status": "success",
+    "message": "User sign up successful",
+    "data": {
+        "user": {
+            "id": 2500261,
+            "provider": "email",
+            "uid": "testtheebanii.moorthyeee@awign.com",
+            "email": "testtheebanii.moorthyeee@awign.com",
+            "mobile_number": "900299456",
+            "roles": [
+                "int-client"
+            ],
+            "ss_oms_id": "5e57c0bcec4f154249c5e2bc",
+            "ih_oms_id": "5e57c0bcec4f153182234513",
+            "supply_id": null,
+            "memberships": [
+                {
+                    "org_id": 122,
+                    "name": "testawignqauseruu",
+                    "domain": "testawignqauseruu",
+                    "icon": "https://awign-production.s3.ap-south-1.amazonaws.com/awign/defaults/icons/t.png",
+                    "owner_name": "testmachineonei",
+                    "roles": [
+                        "ext-owner",
+                        "ext-admin",
+                        "ext-manager",
+                        "ext-workforce"
+                    ]
+                },
+                {
+                    "org_id": 123,
+                    "name": "testawiegneqauseruu",
+                    "domain": "teestawignqauseruu",
+                    "icon": "https://awign-production.s3.ap-south-1.amazonaws.com/awign/defaults/icons/t.png",
+                    "owner_name": "testmachineonei",
+                    "roles": [
+                        "ext-owner",
+                        "ext-admin",
+                        "ext-manager",
+                        "ext-workforce"
+                    ]
+                }
+            ],
+            "name": "testmachineonei",
+            "permalink": null,
+            "image": "https://awign-production.s3.ap-south-1.amazonaws.com/awign/defaults/icons/t.png",
+            "fcm_token": null,
+            "mobile_number_verified": false,
+            "status": null,
+            "created_at": "2020-02-27 13:14:35 UTC",
+            "updated_at": "2020-02-27 13:15:47 UTC"
+        },
+        "headers": {
+            "access-token": "yUdT869elQhsSgEIt85RlQ",
+            "client": "rpCA55L-ThqI1eYNHfHD5g",
+            "uid": "testtheebanii.moorthyeee@awign.com"
+        }
+    }
+}

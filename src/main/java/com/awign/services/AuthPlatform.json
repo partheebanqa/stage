@@ -1,0 +1,117 @@
+{
+"services": [
+	{
+        "verifyMobileNumberRegistered" :{
+            "ApiDescription": " Verify whether phone number is already registered with Awign.",
+            "user":"",
+            "httpMethod": "GET",
+            "uri": "https://auth-api.awigntest.com/central/api/v1/users/CLIENT_ID",
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+			"statusCode": 404,
+            	"requestBody": {},
+	       	"responseCheck":[],
+	       	"preRequesties": "",
+	       	"active": true     	
+		}
+      }
+   ,
+	{
+        "verifyEmailRegistered" :{
+           "httpMethod": "GET",
+            "uri": "https://auth-api.awigntest.com/central/api/v1/users/CLIENT_ID",
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+			"statusCode": 404,
+            	"requestBody": {},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true     	
+	       		
+			}
+     }
+	,
+	{
+        "NewClient_sign_up" :{
+           "httpMethod": "POST",
+            "uri": "https://auth-api.awigntest.com/client/auth/email/sign_up",
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+		    "extractResponse":["usr_id","org_id","org_name","access-token","client","uid"],
+			"statusCode": 201,
+            	"requestBody": {
+				"user":{"name":"testqaprojectddd","email":"partheebantest.moorthyonetestee@awign.com","contact":"9001399455"},"organisation":{"name":"testawigncomptesttasdf","domain":"testawigncomptesttwoasdf"}		
+	       				},
+	       	"responseCheck":["data.headers.client"],
+	       	"scenarioFlow": "",
+	       	"vertical":"",
+	       	"active": true    
+			}
+   }
+   ,
+  {
+       "NewClient_validate":{
+           "httpMethod": "GET",
+            "uri": "https://auth-api.awigntest.com/central/auth/validate",
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+			"statusCode": 201,
+            	"requestBody": {
+				"user":{"name":"testqaproject","email":"partheeban.moorthyone@awign.com","contact":"9742399455"},"organisation":{"name":"testawigncomp","domain":"testawigncomp"}		
+	       				},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+        }
+	}
+   ,
+  	{
+         "NewMember_invite":{
+            "httpMethod": "POST",
+            "uri": "https://auth-api.awigntest.com/client/api/v1/orgs/testcompprod/users/invite",
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+		    "extractResponse":[],
+		    "requiredData": ["access-token","client"],		    
+            	"statusCode": 201,         
+			"requestBody": {
+				"user":{"name":"testqaproject","email":"partheeban.moorthyone@awign.com","contact":"9742399455"},"organisation":{"name":"testawigncomp","domain":"testawigncomp"}		
+	       },
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+            
+            }
+        }
+        ,
+       {
+         "Member_login":{
+            "httpMethod": "POST",
+            "uri": "https://auth-api.awigntest.com/central/auth/email/sign_in",
+            "user":"int-ce@awign.com",
+		    "extractResponse":["usr_id","access-token","client","uid"],
+		   	"apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+            "statusCode": 200,         
+			"requestBody": {"user":{"email":"int-ce@awign.com","password":"111111"} },
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+            
+            }
+        }
+    ,    
+  {
+         "Member_logout":{
+            "httpMethod": "DELETE",
+            "uri": "https://auth-api.awigntest.com/central/auth/sign_out",
+            "user":"",
+            	"requiredData": ["access-token","client"],
+		    "apiHeader":["Content-Type","access-token","client"],
+            	"statusCode": 200,         
+			"requestBody": {
+				"user":{}		
+	       },
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+            
+            }
+        }
+        
+  ]
+}

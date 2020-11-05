@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<parameters>
+	
+	<!--**************************************** Web Host Names ************************************************************ -->
+
+		<parameter name="env" value="qa"></parameter>
+		
+		<!--********************************** Framework Configuration Parameters **************************************** -->
+	
+		<parameter name="browser" value="chrome" />
+		<parameter name="softAssertEnabled" value="true"></parameter>
+		<parameter name="generateHARFile" value="false"></parameter>
+		<parameter name="browsermobProxyPort" value="29999"></parameter>
+		<parameter name="chromeDriverPath" value="src/main/resources/drivers"></parameter>
+		<parameter name="profileName" value="selenium_test"></parameter>
+		<parameter name="useFirefoxDefaultProfile" value="false"></parameter>
+		<parameter name="ClearTestData" value="false"></parameter>
+		
+	</parameters>
+	
