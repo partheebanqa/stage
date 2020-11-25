@@ -218,7 +218,7 @@ public class VerificationSteps extends BaseController{
 	        LinkedList<String> extractObj = new LinkedList<String>();
 	        JsonPath jp = response.jsonPath();
 
-	        //  System.out.println("hello");
+	         // System.out.println("-----------hello");
 			for(int i = 0; i<extractlist.length();i++) {
 				System.out.println("input "+extractlist.get(i).toString());
 				extractObj.add(extractlist.get(i).toString());
@@ -281,6 +281,8 @@ public class VerificationSteps extends BaseController{
 	                    break;
 	                case "executionproject_id":
 	                		String execution_project_id = jp.get("data.project._id").toString();
+		                	System.out.println("execution_project_id:::::::::::"+execution_project_id);
+
 	                    jsonTestDataObject.put("executionproject_id", execution_project_id);
 	                    testdata.setExecutionproject_id(execution_project_id);
 	                 //   System.out.println("Created Execution project:\t"+execution_project_id);

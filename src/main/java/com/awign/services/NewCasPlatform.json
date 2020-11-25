@@ -36,7 +36,7 @@
          "addUserARole":{
             "httpMethod": "POST",
             "uri": "https://auth-api.awigntest.com/api/v1/users/CLIENT_ID/user_roles",
-		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language","uid","client","access-token"],
 		    "newRole":"client",
 		    "extractResponse":[],
 		    "requiredData": ["access-token"],		    

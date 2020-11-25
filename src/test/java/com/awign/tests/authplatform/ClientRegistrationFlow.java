@@ -69,6 +69,8 @@ public class ClientRegistrationFlow extends BaseController{
 		new NewCasPlatformTest().verifyNewClientSignup(verifyResponse);
 	}
 	
+	
+	
 	@WithTags({@WithTag("one")})
 	@WithTagValuesOf({"level:Feature", "feature:oms", "story:ManageRequirement"})
 	@Test
@@ -211,6 +213,13 @@ public class ClientRegistrationFlow extends BaseController{
 
 	}
 	
+	@Title("Search the available Listing to clone")
+	@WithTags({@WithTag("login")})
+	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+	@Test()
+	public void test020() throws IOException {
+		new authPlatformTest().verifyUserLogin(verifyResponse);
+	}
 	
 	
 }

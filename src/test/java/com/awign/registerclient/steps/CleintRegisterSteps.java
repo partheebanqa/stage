@@ -1,11 +1,7 @@
 package com.awign.registerclient.steps;
 
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
-import net.serenitybdd.rest.SerenityRest;
-import net.thucydides.core.annotations.Step;
 
 
 public class CleintRegisterSteps {
@@ -52,7 +48,7 @@ public class CleintRegisterSteps {
 ////'{"conditions":[{"domain":{"operator":"eq","value":"testawigncomp"}}],"limit":8,"page":1}
 
 	}
-	
+		
 	
 
 	

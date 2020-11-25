@@ -4,14 +4,9 @@ import java.io.IOException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import com.awign.dataprovider.BaseController;
 import com.awign.utilities.ApiMethod;
 import io.restassured.response.Response;
-import net.serenitybdd.junit.runners.SerenityRunner;
-import net.thucydides.core.annotations.Title;
-import net.thucydides.core.annotations.WithTagValuesOf;
 import steps.VerificationSteps;
 
 //@FixMethodOrder(MethodSorters.DEFAULT)
@@ -33,10 +28,6 @@ public class NewCasPlatformTest extends BaseController{
 	}
 
 	
-
-	//@WithTags({@WithTag("Feature")})
-	//@Test
-	//@Title("Guest user: Verify whether new client is able to register with Awign")
 	public void verifyNewClientSignup(VerificationSteps verifyResponse) throws IOException {
 		String apiname= "verifyNewClientSignup";
 		String serviceName= "newcas";
@@ -141,9 +132,6 @@ public class NewCasPlatformTest extends BaseController{
 */
 
 	@SuppressWarnings("null")
-	//@WithTagValuesOf({"level:UserChangeRole", "feature:ModifyRole", "story:ManageRole"})
-	//@Test
-	//@Title("Verify whether New role is getting assigned to the user")
 	public void addUserARole(VerificationSteps verifyResponse) throws IOException {
 		String apiname = "addUserARole";
 		String serviceName ="newcas";

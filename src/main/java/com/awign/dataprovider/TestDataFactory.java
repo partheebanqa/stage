@@ -15,9 +15,9 @@ public class TestDataFactory {
     private String req_status;
 	private String req_vertical;
 	private String usr_cookie;
-	private String client;
-	private String access_token;
-	private String uid;
+	private static String client;
+	private static String access_token;
+	private static String uid;
 	private String user_role;
 	private String billingproject_id;
 	private String executionproject_id;

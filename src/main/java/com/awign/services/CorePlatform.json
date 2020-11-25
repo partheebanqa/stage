@@ -5,7 +5,7 @@
             "ApiDescription": " Verify whether phone number is already registered with Awign.",
             "httpMethod": "POST",
             "uri": "http://core-api.awigntest.com/api/v1/sms/to_number",
-		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language","uid","client","access-token"],
 			"statusCode": 200,
             	"requestBody": {
    							 "sms": {
@@ -24,7 +24,7 @@
         "sendEmail" :{
            "httpMethod": "POST",
             "uri": "http://core-api.awigntest.com/api/v1/email/",
-		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language","uid","client","access-token"],
 			"statusCode": 202,
             	"requestBody": {
     						"email": {
@@ -47,7 +47,7 @@
         "sendPushNotification" :{
            "httpMethod": "POST",
             "uri": "http://core-api.awigntest.com/api/v1/notifications/",
-		    "apiHeader":["Content-Type"],
+		    "apiHeader":["Content-Type","uid","client","access-token"],
 			"statusCode": 200,
             	"requestBody":
 						{

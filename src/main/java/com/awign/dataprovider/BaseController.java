@@ -1,21 +1,11 @@
 package com.awign.dataprovider;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Properties;
 import org.json.JSONObject;
-import org.json.simple.JSONArray;
-
 import com.awign.utilities.JsonUtil;
-import com.awign.utilities.PropertyUtil;
 import com.awign.utilities.ReusableSpecifications;
 import com.awign.utilities.StringUtil;
 import com.awign.utilities.TestDataGenerator;
+
 
 public class BaseController {
 	 public static JsonUtil jsonUtil = new JsonUtil();
@@ -24,6 +14,10 @@ public class BaseController {
 	 public static StringUtil fakeData = new StringUtil();
 	 public static TestDataFactory testdata;
 	 public static ReusableSpecifications restSpec;
+	 public static String ENV = "awigntest.com";
+	 
+	 //Todo:
+	 //Control url :stage and dev, using variable
 	 
 	 public BaseController(){
 	 }
@@ -55,6 +49,8 @@ public class BaseController {
 		 testdata.setBpep_name(bpepname);
     	    }catch(Exception e) {
     	   // 	e.printStackTrace();
+    	    	
+    	    	
      }
      }
      

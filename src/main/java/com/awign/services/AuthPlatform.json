@@ -33,7 +33,7 @@
         "NewClient_sign_up" :{
            "httpMethod": "POST",
             "uri": "https://auth-api.awigntest.com/client/auth/email/sign_up",
-		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language","uid","client","access-token"],
 		    "extractResponse":["usr_id","org_id","org_name","access-token","client","uid"],
 			"statusCode": 201,
             	"requestBody": {
@@ -65,7 +65,7 @@
          "NewMember_invite":{
             "httpMethod": "POST",
             "uri": "https://auth-api.awigntest.com/client/api/v1/orgs/testcompprod/users/invite",
-		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language","uid","client","access-token"],
 		    "extractResponse":[],
 		    "requiredData": ["access-token","client"],		    
             	"statusCode": 201,         
@@ -83,11 +83,10 @@
          "Member_login":{
             "httpMethod": "POST",
             "uri": "https://auth-api.awigntest.com/central/auth/email/sign_in",
-            "user":"int-ce@awign.com",
 		    "extractResponse":["usr_id","access-token","client","uid"],
 		   	"apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
             "statusCode": 200,         
-			"requestBody": {"user":{"email":"int-ce@awign.com","password":"111111"} },
+			"requestBody": {"user":{"email":"partheeban.moorthy@gmail.com","password":"111111"}},
 	       	"responseCheck":[],
 	       	"scenarioFlow": "",
 	       	"active": true
@@ -100,11 +99,10 @@
             "httpMethod": "DELETE",
             "uri": "https://auth-api.awigntest.com/central/auth/sign_out",
             "user":"",
-            	"requiredData": ["access-token","client"],
-		    "apiHeader":["Content-Type","access-token","client"],
-            	"statusCode": 200,         
-			"requestBody": {
-				"user":{}		
+            "requiredData": ["access-token","client"],
+		    "apiHeader":["Content-Type","access-token","client","uid","client","access-token"],
+            "statusCode": 200,         
+			"requestBody": {"user":{}		
 	       },
 	       	"responseCheck":[],
 	       	"scenarioFlow": "",
@@ -112,6 +110,20 @@
             
             }
         }
+        ,
+        {
+         "ValidateUser":{
+            "httpMethod": "GET",
+            "uri": "https://auth-api.awigntest.com/central/auth/validate",
+ 			"apiHeader":["uid","client","access-token"],
+ 			"requestBody": {"user":{"email":"partheeban.moorthy@gmail.com","password":"111111"}},
+            "statusCode": 200,         
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
         
+        }
+     
+       } 
   ]
 }

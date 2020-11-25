@@ -4,18 +4,11 @@ import java.io.IOException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import com.awign.dataprovider.BaseController;
+import com.awign.tests.authplatform.authPlatformTest;
 import com.awign.utilities.ApiMethod;
-import com.awign.utilities.PropertyUtil;
 import io.restassured.response.Response;
-import net.serenitybdd.junit.runners.SerenityRunner;
-import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Title;
-import net.thucydides.core.annotations.WithTag;
-import net.thucydides.core.annotations.WithTagValuesOf;
-import net.thucydides.core.annotations.WithTags;
 import steps.VerificationSteps;
 
 //@FixMethodOrder(MethodSorters.DEFAULT)
@@ -46,7 +39,20 @@ public class IhomsPlatformTest extends BaseController{
         //System.out.println("get org ------------------"+ jsonTestDataObject.getString("org_id"));
         JSONObject jsonObject = new JSONObject();
 		jsonObject = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
-		System.out.println(jsonObject);
+		System.out.println(apiname + "\t Request obj" +jsonObject);
+		
+		
+		//Get Authentication:
+		try {
+		String login_email = jsonObject.getString("loginuser").toString();
+		if(!(login_email== null) || login_email.isEmpty()) {
+			new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+		
+		}	
+		
+		}catch(Exception e) {}
+				
+	//	new authPlatformTest().validateUser(verifyResponse);
 		
         JSONObject requestObj=  (JSONObject) jsonObject.get("requestBody");
         JSONObject clientReqObject=  (JSONObject) requestObj.get("client_requirement");
@@ -54,9 +60,10 @@ public class IhomsPlatformTest extends BaseController{
         clientReqObject.put("domain", jsonTestDataObject.getString("org_domain"));
         clientReqObject.put("org", jsonTestDataObject.getString("org_id"));
         
-        System.out.println("Request Object:\t" +requestObj);
+        System.out.println(apiname + "\tRequest Object:\t" +requestObj);
        	Response response = new ApiMethod().httpMethod(jsonObject);
        	
+       	System.out.println(apiname+ " \t Api Response::::::::::::::"+ response.asString());
 		try {
 		JSONArray requiresObj= (JSONArray) jsonObject.getJSONArray("extractResponse");
 		System.out.println("Required Objects which have to be extracted from Response: \t\t"+requiresObj);
@@ -65,16 +72,16 @@ public class IhomsPlatformTest extends BaseController{
 		}
 		}catch(Exception e) {}
 
+	//	System.out.println("Api Response------------"+response.asString());   
+		  
 		
-       	verifyResponse.searchIsExecutedSuccesfully(response);
-       	verifyResponse.searchvalidstatus(response);
+     //  	verifyResponse.searchIsExecutedSuccesfully(response);
+     //  	verifyResponse.searchvalidstatus(response);
       // 	verifyResponse.ValidateRestSpec(response);
-       	System.out.println("------------"+response.asString());   
 		  
 	}
 
-	//@WithTags({@WithTag("Feature")})
-	//@Test
+
 	@Title("Verify whether we are able to search the Created requirement")
 	public void searchRequirement(VerificationSteps verifyResponse) throws IOException {
 		String apiname= "searchRequirement";
@@ -99,13 +106,11 @@ public class IhomsPlatformTest extends BaseController{
        	//verifyResponse.searchvalidstatus(response);
        	//verifyResponse.addReq_idToTestData(response);
        	
-       	System.out.println("------------"+response.asString());   
+       	System.out.println("Api Response------------"+response.asString());   
 		  
 	}
 
 
-	//@WithTags({@WithTag("Feature")})
-	//@Test
 	@Title("Verify whether we are able to search the newly created project")
 	public void searchProject(VerificationSteps verifyResponse) throws IOException {
 		String apiname = "searchProject";
@@ -138,22 +143,39 @@ public class IhomsPlatformTest extends BaseController{
 		String serviceName ="oms_internal";
         JSONObject requestObj = new JSONObject();
         requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
-		System.out.println("Request Object :\t"+requestObj);
+		System.out.println(apiname + " \tRequest Object :\t"+requestObj);
 		
-		String uri_update = null; 
+		
+		//Get Authentication:
+		try {
+		String login_email = requestObj.getString("loginuser").toString();
+		if(!(login_email== null) || login_email.isEmpty()) {
+			new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+		
+		}}catch(Exception e) {}
+		
+		
+		String uri_string = null; 
 		
 		try {
 			String listingexecutionproject_id = jsonTestDataObject.getString("listingsrc_execution_project_id");
 			if(!(listingexecutionproject_id== null) || listingexecutionproject_id.isEmpty()) {				
-			uri_update = requestObj.getString("uri").toString();
-			uri_update= uri_update.replace("PROJECT_ID", listingexecutionproject_id);
+			uri_string = requestObj.getString("uri").toString();
+			uri_string= uri_string.replace("PROJECT_ID", listingexecutionproject_id);
 			}
 		}catch(Exception e) {}
-		requestObj.put("uri", uri_update);
+		requestObj.put("uri", uri_string);
 		
-		System.out.println("update uri" + uri_update);
-       	Response response = new ApiMethod().httpMethod(requestObj);
+		Response response ;
+		if((uri_string== null) || uri_string.isEmpty()) {				
+		System.out.println("Update uri is null, Please Check" + uri_string);
+				response = new ApiMethod().httpMethod(requestObj);
+		}else
+		{
+			 	response = new ApiMethod().httpMethod(requestObj);	
+		}
        	
+	 	System.out.println(apiname+ "API Response------------\t"+response.asString());   
 		try {
 		JSONArray requiresObj= (JSONArray) requestObj.getJSONArray("extractResponse");
 		System.out.println("Required Objects which have to be extracted from Response: \t\t"+requiresObj);
@@ -211,9 +233,7 @@ public class IhomsPlatformTest extends BaseController{
 		  
 	}
 
-	
-	
-	
+		
 	@Title("Create Billing project for the requirement")
 	public void createBillingProject(VerificationSteps verifyResponse) throws IOException {
 		String apiname= "createBillingProject";
@@ -222,12 +242,22 @@ public class IhomsPlatformTest extends BaseController{
 
         JSONObject jsonObject = new JSONObject();
 		jsonObject = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
-		System.out.println(jsonObject);
+		System.out.println(apiname+ "\t Request object"+ jsonObject);
+		
+		//Get Authentication:
+		try {
+		String login_email = jsonObject.getString("loginuser").toString();
+		if(!(login_email== null) || login_email.isEmpty()) {
+			new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+		
+		}	
+		
+		}catch(Exception e) {}
 		
         JSONObject requestObj=  (JSONObject) jsonObject.get("requestBody");
         JSONObject projectObject=  (JSONObject) requestObj.get("project");
 		String uri_update = null; 
-		System.out.println("req d:::::::"+ testdata.getReq_id());
+		System.out.println(" Project Requirement Id :::::::"+ testdata.getReq_id());
 		try {
 			String req_id = testdata.getReq_id();
 			System.out.println(testdata.getReq_id());
@@ -235,7 +265,6 @@ public class IhomsPlatformTest extends BaseController{
 			if(!(req_id== null) || req_id.isEmpty()) {
 			
 			uri_update = jsonObject.getString("uri").trim().toString();
-			System.out.println();
 			uri_update= uri_update.replace("REQUIREMENT_ID", req_id);
 			}
 		}catch(Exception e) {}
@@ -245,12 +274,11 @@ public class IhomsPlatformTest extends BaseController{
 		projectObject.put("client_requirement_id", testdata.getReq_id());
 		projectObject.put("_project_type",testdata.getReq_vertical());
 		jsonObject.put("uri", uri_update);
-		//System.out.println("update uri" + uri_update);
         
         System.out.println("Request Object:::::" +requestObj);
        	Response response = new ApiMethod().httpMethod(jsonObject);
        	
-       	System.out.println("Response::::::::: " + response.asString());
+       	System.out.println(apiname + "\t Response::::::::: " + response.asString());
        	
 
 		try {
@@ -260,22 +288,26 @@ public class IhomsPlatformTest extends BaseController{
 			verifyResponse.addResponseAttributestoTestData(requiresObj ,response);
 		}
 		}catch(Exception e) {}
-		System.out.println("\n any exception \n");
        	verifyResponse.validateExpectedStatusCode(response,jsonObject.getInt("statusCode"));       	
-
-
-		  
 	}
 
 	@Title("Create execution project for the requirement")
 	public void createExecutionProject(VerificationSteps verifyResponse) throws IOException {
 		String apiname= "createExecutionProject";
 		String serviceName= "oms_internal";
-		System.out.println("--------------"+jsonTestDataObject);
+		System.out.println("Test Data --------------"+jsonTestDataObject);
 
         JSONObject jsonObject = new JSONObject();
 		jsonObject = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
-		System.out.println(jsonObject);
+		System.out.println(apiname+ "\t Request object"+ jsonObject);
+		
+		//Get Authentication:
+				try {
+				String login_email = jsonObject.getString("loginuser").toString();
+				if(!(login_email== null) || login_email.isEmpty()) {
+					new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+				}	
+				}catch(Exception e) {}
 		
         JSONObject requestObj=  (JSONObject) jsonObject.get("requestBody");
         JSONObject projectObject=  (JSONObject) requestObj.get("project");
@@ -290,15 +322,15 @@ public class IhomsPlatformTest extends BaseController{
 			}
 		}catch(Exception e) {}
 
-        
 		projectObject.put("name", "test EP"+testdata.getOrg_name());
 		projectObject.put("client_requirement_id", testdata.getReq_id());
 		projectObject.put("_project_type",testdata.getReq_vertical());
 		jsonObject.put("uri", uri_update);
-		System.out.println("update uri" + uri_update);
-        
-        System.out.println("Request Object" +requestObj);
+		System.out.println(apiname + "\tUpdate uri" + uri_update);
+        System.out.println(apiname + "\tRequest Object" +requestObj);
        	Response response = new ApiMethod().httpMethod(jsonObject);
+
+       	System.out.println(apiname+ " Api Response::::::::::::::"+ response.asString());
 
 		try {
 		JSONArray requiresObj= (JSONArray) jsonObject.getJSONArray("extractResponse");
@@ -309,10 +341,6 @@ public class IhomsPlatformTest extends BaseController{
 		}catch(Exception e) {}
        //	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
        	verifyResponse.validateExpectedStatusCode(response,jsonObject.getInt("statusCode"));       	
-
 	}
 
-
-	
-	
 	}
