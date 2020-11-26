@@ -33,6 +33,7 @@ public class TestDataFactory {
 	private String ep_projectowner_execution_sources_id; //get from getProject using ep id
 	private String listingsrc_execution_project_id; // get from listing search
 	private String clone_listing_id;
+	private String newly_created_listing_id;
 
 	public String getEp_projectowner_execution_sources_id() {
 		return this.ep_projectowner_execution_sources_id;
@@ -285,6 +286,14 @@ public class TestDataFactory {
         return " {" +
                 "testCaseId='" + testCaseId + '\'' +
                 '}';
-    }    
+    }
+
+	public String getNewly_created_listing_id() {
+		return newly_created_listing_id;
+	}
+
+	public void setNewly_created_listing_id(String newly_created_listing_id) {
+		this.newly_created_listing_id = newly_created_listing_id;
+	}    
     
 }

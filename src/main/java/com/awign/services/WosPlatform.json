@@ -4,6 +4,7 @@
         "addListing": {
             "httpMethod": "POST",
             "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID/clone",
+            "loginuser":"int-moderator@example.com",
 		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language","uid","client","access-token"],
 		    "extractResponse":["req_id","req_status","req_vertical"],	    
 			"statusCode": 200,
@@ -12,7 +13,34 @@
 	       	"scenarioFlow": "",
 	       	"active": true
 			}
-
+	},
+	{
+        "partialCloneListing": {
+            "httpMethod": "POST",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID/clone",
+            "loginuser":"int-moderator@example.com",
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language","uid","client","access-token"],
+		    "extractResponse":["newly_created_listing_id"],	    
+			"statusCode": 200,
+            	"requestBody": {"worklisting":{"execution_project_id":"5fbe2f036b7016005186caea"},"clone_application_question":true,"clone_in_app_interview":true,"clone_in_app_training":false,"clone_telephonic_interview":false,"clone_webinar_training":false,"clone_pitch_demo":false,"clone_pitch_test":false,"clone_sample_lead_test":false},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}
+	},
+	{
+        "fullCloneListing": {
+            "httpMethod": "POST",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID/clone",
+            "loginuser":"int-moderator@example.com",
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language","uid","client","access-token"],
+		    "extractResponse":["req_id","req_status","req_vertical"],	    
+			"statusCode": 200,
+            	"requestBody": {"worklisting":{"execution_project_id":"5f842a726b7016002cc8cace"},"clone_application_question":true,"clone_in_app_interview":true,"clone_in_app_training":true,"clone_telephonic_interview":true,"clone_webinar_training":true,"clone_pitch_demo":true,"clone_pitch_test":true,"clone_sample_lead_test":true},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}
 	},
 	{       
 	 "searchListings": {
@@ -21,6 +49,7 @@
             "listing_type":"part_time_job", 
             "execution_type":"work_in_college",
             "project_id":"5f5875796b7016002d01afb1",
+            "loginuser":"int-moderator@example.com",
             "extractResponse":["worklistings_id","worklistings_name","listing_type","execution_type","project_execution_source_id","listingsrc_execution_project_id"],	             
 		    "apiHeader":["Content-Type","uid","client","access-token"],
 		    "object":"id",
@@ -36,6 +65,7 @@
             "httpMethod": "GET",
             "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
             "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
             "listing_id":286,
             "extractResponse":["getListing_execution_project_id"],	             
 		    "apiHeader":["Content-Type","uid","client","access-token"],
@@ -45,6 +75,189 @@
 	       	"scenarioFlow": "",
 	       	"active": true
 			}	
+	},
+	{       
+	 "updateListingBasicDetails": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            	"requestBody": {},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}
+				
+	},
+	{       
+	 "updateListingLocationDetails": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"worklisting":{"location_type":"all_india"}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}
+				},
+	{       
+	 "updateListingEarningsDetails": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"worklisting":{"potential_earning":{"earning_type":"salary","from":"5000","to":"10000","earning_duration":"per week"},"information_text":"<p>For each every background verification along with updates given to the investigation team will help you in gaining credits which, further will impact your performance ratings.</p>\n\n<p>Average rating of 7 will help you earn the total stipend.</p>\n\n<p>Above rating for every credit you earn bonus</p>\n","duration":{"from":"2","to":"3","type":"months"}}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}			
+	},
+	{       
+	 "updateListingDescriptionDetails": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"worklisting":{"description":"Due diligence is the investigation ","roles_and_responsibilities":"<ul>\n\t<li dir=\"ltr\">\n\t<p dir=\"ltr\">Make sure that all information reported by the seller is accurate</p>\n\t</li>\n</ul>\n","what_you_get":"<ul>\n\t<li>Employee expenses</li>\n</ul>\n","who_can_apply":"<p>Any graduate UG/PG from tier-1 institute.</p>\n"}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	}
+	,
+	{       
+	 "reviewListingBasicDetails": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"worklisting":{"basic_details_reviewed":true}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	}	,
+	{       
+	 "reviewListingLocationDetails": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"worklisting":{"location_reviewed":true}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+	{       
+	 "reviewListingEarningsDetails": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"worklisting":{"earnings_reviewed":true}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+	{       
+	 "reviewListingDescriptionDetails": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/worklistings/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"worklisting":{"description_reviewed":true}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+	{       
+	 "ListingApplicationConfiguration": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/application_channels/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"application_question_configured":false,"application_question_reviewed":false,"in_app_interview_required":false,"in_app_interview_configured":false,"in_app_interview_mandatory":true,"in_app_interview_reviewed":false,"telephonic_interview_required":false,"telephonic_interview_configured":false,"telephonic_interview_mandatory":false,"telephonic_interview_reviewed":false,"in_app_training_required":false,"in_app_training_configured":false,"in_app_training_mandatory":false,"in_app_training_reviewed":false,"webinar_training_required":false,"webinar_training_configured":false,"webinar_training_mandatory":false,"webinar_training_reviewed":false,"pitch_demo_required":false,"pitch_demo_configured":false,"pitch_demo_mandatory":false,"pitch_demo_reviewed":false,"pitch_test_required":false,"pitch_test_configured":false,"pitch_test_mandatory":false,"pitch_test_reviewed":false,"sample_lead_test_required":false,"sample_lead_test_configured":false,"sample_lead_test_mandatory":false,"sample_lead_test_reviewed":false},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	}
+	,
+	{       
+	 "listingApplicationsQuestionsConfigure": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/application_channels/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"application_channel":{"application_question_configured":true}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+	{       
+	 "reviewApplicationsQuestionsDetails": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://wos-api.awigntest.com/api/v1/application_channels/LISTING_ID",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"application_channel":{"application_question_reviewed":true}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+	{       
+	 "setOfferLetterforES": {
+            "httpMethod": "PUT",
+            "_comment": "https://wos-api.awigntest.com/api/v1/worklistings/841",
+            "uri": "https://ih-oms-api.awigntest.com/projects/api/v1/projects/5fbe2f036b7016005186caea/project_roles/5fbe2f036b7016005186caec/execution_sources/5fbe2f036b7016005186caed",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":["getListing_execution_project_id"],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"execution_source":{"offer_letter_templates":{"default":{"url":"16HlvsFeYrTT_cTUqpkGIY-l_fB5GAmpxZuiqXJiYHNw"}}}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
 	}
        
 ]

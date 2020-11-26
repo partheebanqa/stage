@@ -232,20 +232,18 @@ public class VerificationSteps extends BaseController{
 	            	   		break;
 	                case "org_name":
 	                		String org_name=jp.get("data.user.memberships[0].name").toString();
-	                    jsonTestDataObject.put("org_name", org_name);
-	                    testdata.setOrg_name(org_name);
+	                		jsonTestDataObject.put("org_name", org_name);
+	                		testdata.setOrg_name(org_name);
 	                		break;
-
 	                case "client":
 	                		String client = jp.get("data.headers.client").toString();
 	                	    jsonTestDataObject.put("client", client);
 	                	    testdata.setClient(client);
-	            	    		break;
-
+	            	    	break;
 	                case "access-token":
-	                    String access_token=jp.get("data.headers.access-token").toString();
-	                    jsonTestDataObject.put("access_token", access_token);
-	                    testdata.setAccess_token(access_token);
+	                    	String access_token=jp.get("data.headers.access-token").toString();
+	                    	jsonTestDataObject.put("access_token", access_token);
+	                    	testdata.setAccess_token(access_token);
 		    				break;
 	                case "usr_id":
 	                		String usr_id = jp.get("data.user.id").toString();
@@ -259,34 +257,33 @@ public class VerificationSteps extends BaseController{
 	                case "req_id":
 	                	System.out.println("hello 2");
 	                		String  req_id = jp.get("data.client_requirement._id").toString();
-	                    jsonTestDataObject.put("req_id", req_id);
-	                    testdata.setReq_id(req_id);
-	                    break;
+	                		jsonTestDataObject.put("req_id", req_id);
+	                		testdata.setReq_id(req_id);
+	                		break;
 	                case "req_status":
 	                		String req_status = jp.get("data.client_requirement._status").toString();
-	                    jsonTestDataObject.put("req_status", req_status);
-	                    testdata.setReq_status(req_status);
+	                		jsonTestDataObject.put("req_status", req_status);
+	                		testdata.setReq_status(req_status);
 	                		break;
 	                case "req_vertical":
 	                		String req_vertical = jp.get("data.client_requirement.vertical").toString();
-	                    jsonTestDataObject.put("req_vertical", req_vertical);
-	                    testdata.setReq_vertical(req_vertical);
+	                		jsonTestDataObject.put("req_vertical", req_vertical);
+	                		testdata.setReq_vertical(req_vertical);
 	                		break;
 	                		
 	                case "billingproject_id":
-	                	String billing_project_id = jp.get("data.project._id").toString();
-	                	System.out.println(":::::::::::"+billing_project_id);
-	                    jsonTestDataObject.put("billingproject_id", billing_project_id);
-	                    testdata.setBillingproject_id(billing_project_id);
-	                    break;
+	                		String billing_project_id = jp.get("data.project._id").toString();
+	                		System.out.println(":::::::::::"+billing_project_id);
+	                    	jsonTestDataObject.put("billingproject_id", billing_project_id);
+	                    	testdata.setBillingproject_id(billing_project_id);
+	                    	break;
 	                case "executionproject_id":
 	                		String execution_project_id = jp.get("data.project._id").toString();
 		                	System.out.println("execution_project_id:::::::::::"+execution_project_id);
-
-	                    jsonTestDataObject.put("executionproject_id", execution_project_id);
-	                    testdata.setExecutionproject_id(execution_project_id);
-	                 //   System.out.println("Created Execution project:\t"+execution_project_id);
-	                    break;
+		                	jsonTestDataObject.put("executionproject_id", execution_project_id);
+		                	testdata.setExecutionproject_id(execution_project_id);
+		                	//   System.out.println("Created Execution project:\t"+execution_project_id);
+		                	break;
 	                case "worklistings_id":
 	                	try {
                 			String worklistings_id = jp.get("worklistings[0].id").toString();
@@ -325,29 +322,45 @@ public class VerificationSteps extends BaseController{
     						testdata.setListingsrc_execution_project_id(listingsrc_execution_project_id);
     						break;
 	                case "ep_Executive_execution_sources_id": //The roles which we create a EP, generally it will be executive and po
-						String ep_Executive_execution_sources_id = jp.get("data.project.execution_sources[0]._id").toString();
-						jsonTestDataObject.put("ep_Executive_execution_sources_id", ep_Executive_execution_sources_id);
-						testdata.setEp_Executive_execution_sources_id(ep_Executive_execution_sources_id);
-						break;
+							String ep_Executive_execution_sources_id = jp.get("data.project.execution_sources[0]._id").toString();
+							jsonTestDataObject.put("ep_Executive_execution_sources_id", ep_Executive_execution_sources_id);
+							testdata.setEp_Executive_execution_sources_id(ep_Executive_execution_sources_id);
+							break;
 	                case "ep_projectowner_execution_sources_id": //The roles which we create a EP, generally it will be executive and po
-						String ep_projectowner_execution_sources_id = jp.get("data.project.execution_sources[1]._id").toString();
-						jsonTestDataObject.put("ep_projectowner_execution_sources_id", ep_projectowner_execution_sources_id);
-						testdata.setEp_projectowner_execution_sources_id(ep_projectowner_execution_sources_id);
-						break;
+							String ep_projectowner_execution_sources_id = jp.get("data.project.execution_sources[1]._id").toString();
+							jsonTestDataObject.put("ep_projectowner_execution_sources_id", ep_projectowner_execution_sources_id);
+							testdata.setEp_projectowner_execution_sources_id(ep_projectowner_execution_sources_id);
+							break;
 	                case "getListing_execution_project_id": 
-	                		System.out.println("--------Not decided to where to extract , either listing source execution id or some where");
-							String getListing_execution_project_id = jp.get("execution_project_id").toString();
+	                		System.out.println("--------Fetching listing which is active from the harcoded project in the WOS - Search listing ");
+	        				String getListing_execution_project_id = jp.get("execution_project_id").toString();
 							jsonTestDataObject.put("listingsrc_execution_project_id", getListing_execution_project_id);
 							testdata.setListingsrc_execution_project_id(getListing_execution_project_id);
 	                		break;
+	                case "newly_created_listing_id" :
+	                		String newlycreated_listing_id = jp.get("id").toString();
+	                		jsonTestDataObject.put("newly_created_listing_id", newlycreated_listing_id);
+	                		testdata.setNewly_created_listing_id(newlycreated_listing_id);
 	            }
 	        }
 			System.out.println("--------------Update test data:\t "+ jsonTestDataObject);
-			
 		}
 	   
-
-	   	@Step
+	   	
+	   	public void printReferenceUrls() {
+	   		try {
+	   		String projExecution_id = jsonTestDataObject.getString("executionproject_id");
+	   		String listing_id = jsonTestDataObject.getString("newly_created_listing_id");
+	   		
+	   		String listingurl ="https://listings.awigntest.com/projects/listingsrc_execution_project_id/listings/newly_created_listing_id/edit?category=listingDetails&tab=basicDetails";
+	   		listingurl = listingurl.replace("listingsrc_execution_project_id", projExecution_id);
+	   		listingurl = listingurl.replace("newly_created_listing_id", listing_id);
+	   		System.out.println("Requirement name \t :");
+	   		System.out.println("EP Project name \t :");
+	   		System.out.println("Refer Listing URL : \t "+listingurl);
+	   		}catch(Exception e) {}
+	   	}
+	  
 	   	public void extractjson(Response response) {
 
 			JSONObject apiObject = new JSONObject(response.getBody().asString());

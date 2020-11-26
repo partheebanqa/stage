@@ -91,6 +91,16 @@ public class IhomsPlatformTest extends BaseController{
 
         JSONObject requestObj = new JSONObject();
         requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+        
+        
+    	//Get Authentication:
+		try {
+		String login_email = requestObj.getString("loginuser").toString();
+		if(!(login_email== null) || login_email.isEmpty()) {
+			new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+		}	
+		}catch(Exception e) {}
+		
 		System.out.println("Request Object :\t"+requestObj);
 		System.out.println("Expected Status code:\t"+requestObj.getInt("statusCode"));
 		JSONObject conditionObje  = requestObj.getJSONObject("requestBody").getJSONArray("conditions").getJSONObject(0);
@@ -119,6 +129,16 @@ public class IhomsPlatformTest extends BaseController{
 
         JSONObject requestObj = new JSONObject();
         requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+        
+        
+    	//Get Authentication:
+		try {
+		String login_email = requestObj.getString("loginuser").toString();
+		if(!(login_email== null) || login_email.isEmpty()) {
+			new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+		}	
+		}catch(Exception e) {}
+		
 		System.out.println("Request Object :\t"+requestObj);
 		System.out.println("Expected Status code:\t"+requestObj.getInt("statusCode"));
 		JSONObject conditionObje  = requestObj.getJSONObject("requestBody").getJSONArray("conditions").getJSONObject(0);
@@ -151,7 +171,6 @@ public class IhomsPlatformTest extends BaseController{
 		String login_email = requestObj.getString("loginuser").toString();
 		if(!(login_email== null) || login_email.isEmpty()) {
 			new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
-		
 		}}catch(Exception e) {}
 		
 		
@@ -159,12 +178,17 @@ public class IhomsPlatformTest extends BaseController{
 		
 		try {
 			String listingexecutionproject_id = jsonTestDataObject.getString("listingsrc_execution_project_id");
+			System.out.println(" EP Project id \t"+ listingexecutionproject_id);
 			if(!(listingexecutionproject_id== null) || listingexecutionproject_id.isEmpty()) {				
 			uri_string = requestObj.getString("uri").toString();
 			uri_string= uri_string.replace("PROJECT_ID", listingexecutionproject_id);
 			}
-		}catch(Exception e) {}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		requestObj.put("uri", uri_string);
+		
+		System.out.println(apiname + " Request obj--------------" + requestObj);
 		
 		Response response ;
 		if((uri_string== null) || uri_string.isEmpty()) {				
@@ -197,6 +221,15 @@ public class IhomsPlatformTest extends BaseController{
         JSONObject jsonObject = new JSONObject();
 		jsonObject = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
 		System.out.println(jsonObject);
+		
+    	//Get Authentication:
+		try {
+		String login_email = jsonObject.getString("loginuser").toString();
+		if(!(login_email== null) || login_email.isEmpty()) {
+			new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+		}	
+		}catch(Exception e) {}
+		
 		
 		String uri_update = null; 
 		System.out.println("req d:::::::"+ testdata.getReq_id());
@@ -238,7 +271,7 @@ public class IhomsPlatformTest extends BaseController{
 	public void createBillingProject(VerificationSteps verifyResponse) throws IOException {
 		String apiname= "createBillingProject";
 		String serviceName= "oms_internal";
-		System.out.println("--------------"+jsonTestDataObject);
+		System.out.println("Test Data--------------"+jsonTestDataObject);
 
         JSONObject jsonObject = new JSONObject();
 		jsonObject = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
@@ -249,7 +282,7 @@ public class IhomsPlatformTest extends BaseController{
 		String login_email = jsonObject.getString("loginuser").toString();
 		if(!(login_email== null) || login_email.isEmpty()) {
 			new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
-		
+			System.out.println("Test Data--------------"+jsonTestDataObject);
 		}	
 		
 		}catch(Exception e) {}

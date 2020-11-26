@@ -113,8 +113,6 @@ public class ClientRegistrationFlow extends BaseController{
 
 	}
 
-	
-	
 	@Title("Search the available Listing to clone")
 	@WithTags({@WithTag("one")})
 	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
@@ -133,12 +131,21 @@ public class ClientRegistrationFlow extends BaseController{
 
 	}
 	
-	@Title("Create a listing for the newly created EP")
+	@Title("Search the available Listing to clone")
 	@WithTags({@WithTag("one")})
 	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
 	@Test()
 	public void test011() throws IOException {
-		new WOSPlatformTest().addListing(verifyResponse);
+		new WOSPlatformTest().searchListings(verifyResponse);
+
+	}
+	
+	@Title("Create a listing for the newly created EP")
+	@WithTags({@WithTag("one")})
+	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+	@Test()
+	public void test012() throws IOException {
+		new WOSPlatformTest().partialCloneListing(verifyResponse);
 
 	}
 
@@ -148,14 +155,14 @@ public class ClientRegistrationFlow extends BaseController{
 	@WithTagValuesOf({"level:Feature", "feature:core", "story:ManageCommunications"})
 	@Test
 	@Title("Verify whether we are able to send sms to member")
-	public void test012() throws IOException {
+	public void test013() throws IOException {
 		new CorePlatformTest().verifySendSms(verifyResponse);
 	}
 	
 	@WithTagValuesOf({"level:Feature", "feature:core", "story:ManageCommunications"})
 	@Test
 	@Title("Verify whether we are able to send email to registred member")
-	public void test013() throws IOException {
+	public void test014() throws IOException {
 		new CorePlatformTest().verifySendEmail(verifyResponse);
 
 	}
@@ -164,7 +171,7 @@ public class ClientRegistrationFlow extends BaseController{
 	@WithTagValuesOf({"level:Feature", "feature:core", "story:ManageCommunications"})
 	@Test
 	@Title("Verify whether we are able to send push notification to registred member")
-	public void test014() throws IOException {
+	public void test015() throws IOException {
 		new CorePlatformTest().verifyPushNotification(verifyResponse);
   
 	}
@@ -172,7 +179,7 @@ public class ClientRegistrationFlow extends BaseController{
 	@WithTagValuesOf({"level:Feature", "feature:NewCas", "story:UserAction"})
 	@Title("Verify whether user is able to sign in")
 	@Test
-	public void test015() throws IOException {
+	public void test016() throws IOException {
 	new NewCasPlatformTest().verifyUserSignin(verifyResponse);
 	
 	}
@@ -205,7 +212,7 @@ public class ClientRegistrationFlow extends BaseController{
 	
 	
 	@Title("Search the available Listing to clone")
-	@WithTags({@WithTag("sample")})
+	@WithTags({@WithTag("getlisting")})
 	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
 	@Test()
 	public void test019() throws IOException {

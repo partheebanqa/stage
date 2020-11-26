@@ -86,7 +86,7 @@
 		    "extractResponse":["usr_id","access-token","client","uid"],
 		   	"apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
             "statusCode": 200,         
-			"requestBody": {"user":{"email":"partheeban.moorthy@gmail.com","password":"111111"}},
+			"requestBody": {"user":{"email":"int-ce@example.com","password":"111111"}},
 	       	"responseCheck":[],
 	       	"scenarioFlow": "",
 	       	"active": true
