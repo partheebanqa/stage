@@ -1,6 +1,5 @@
 package com.awign.utilities;
 
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,11 +13,13 @@ import org.json.simple.parser.JSONParser;
 import com.awign.dataprovider.BaseController;
 import com.awign.dataprovider.DataConstants;
 import com.awign.dataprovider.TestDataFactory;
-
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
 
 public class JsonUtil {
 	BaseController bs = new BaseController();

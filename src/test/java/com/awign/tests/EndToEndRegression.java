@@ -115,7 +115,7 @@ public class EndToEndRegression extends BaseController{
 		
 		@Title("Get the Executive role source id of an EP")
 		@WithTags({@WithTag("regression")})
-		@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+		@WithTagValuesOf({"level:Feature", "feature:oms", "story:Listing"})
 		@Test()
 		public void test010() throws IOException {
 			new IhomsPlatformTest().getProject(verifyResponse);
@@ -238,7 +238,7 @@ public class EndToEndRegression extends BaseController{
 		
 
 		@WithTags({@WithTag("regression")})
-		@WithTagValuesOf({"level:Feature", "oms", "story:ListingCreation"})
+		@WithTagValuesOf({"level:Feature", "wos", "story:ListingCreation"})
 		@Test
 		@Title("Listing Creation: Offer letter add execution sourceid to the project")
 		public void test025() throws IOException {
@@ -247,7 +247,7 @@ public class EndToEndRegression extends BaseController{
 		
 		
 		@WithTags({@WithTag("regression")})
-		@WithTagValuesOf({"level:Feature", "wos", "story:ListingCreation"})
+		@WithTagValuesOf({"level:Feature", "oms", "story:ListingCreation"})
 		@Test
 		@Title("Listing Creation: Listing Application Configuration")
 		public void test026() throws IOException {
@@ -286,6 +286,35 @@ public class EndToEndRegression extends BaseController{
 		@Title("Listing Creation: publishListing")
 		public void test030() throws IOException {
 			new WOSPlatformTest().publishListing(verifyResponse);
+		}
+		
+		
+		@Title("Workforce apply for a listing")
+		@WithTags({@WithTag("regression")})
+		@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+		@Test()
+		public void test031() throws IOException {
+			new WOSPlatformTest().workforceApplyForAListing(verifyResponse);
+		}
+		
+		
+		@Title("Search the for the execution and apply for it")
+		@WithTags({@WithTag("regression")})
+		@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+		@Test()
+		public void test032() throws IOException {
+			new IhomsPlatformTest().offExecutionMemberSearch(verifyResponse);
+		}
+
+	
+	
+		
+		@Title("Accept the offer letter")
+		@WithTags({@WithTag("regression")})
+		@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+		@Test()
+		public void test034() throws IOException {
+			new IhomsPlatformTest().acceptOfferLetter(verifyResponse);
 		}
 		
 

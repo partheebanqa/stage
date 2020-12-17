@@ -11,6 +11,13 @@ import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.Title;
 import steps.VerificationSteps;
 
+
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
+
+
 //@FixMethodOrder(MethodSorters.DEFAULT)
 //@CucumberOptions( plugin = { “usage” }) //it will record time taken for each step definition. 
 //@story(Application.AppNavigation.NavigationMenu.class)

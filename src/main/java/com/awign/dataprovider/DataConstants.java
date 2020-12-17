@@ -1,4 +1,11 @@
 package com.awign.dataprovider;
+
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
+
+
 public class DataConstants {
 	
     public static final String AUTH_JSON_PATH = System.getProperty("user.dir")+"/src/main/java/com/awign/services/AuthPlatform.json";

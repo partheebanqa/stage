@@ -4,6 +4,12 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
 
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
+
+
 public class CleintRegisterSteps {
 	
 	public Response checkRegisteredMobile(String mobile_number) {

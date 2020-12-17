@@ -387,7 +387,75 @@ public class ClientRegistrationFlow extends BaseController{
 	@Test()
 	public void test038() throws IOException {
 		new authPlatformTest().verifyUserLogin(verifyResponse);
+		
+		
 	}
 	
 	
+	@Title("Search the available Listing to clone")
+	@WithTags({@WithTag("se")})
+	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+	@Test()
+	public void test041() throws IOException {
+		new IhomsPlatformTest().offExecutionMemberSearch(verifyResponse);
+	}
+	
+	
+	@Title("Workforce search for a listing")
+	@WithTags({@WithTag("se")})
+	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+	@Test()
+	public void test039() throws IOException {
+		new WOSPlatformTest().officeApplicationSearch(verifyResponse);
+	}
+	
+	
+	@Title("Workforce apply for a listing")
+	@WithTags({@WithTag("se")})
+	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+	@Test()
+	public void test040() throws IOException {
+		new WOSPlatformTest().workforceApplyForAListing(verifyResponse);
+	}
+	
+	@Title("Search the available Listing to clone")
+	@WithTags({@WithTag("se")})
+	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+	@Test()
+	public void test042() throws IOException {
+		new IhomsPlatformTest().acceptOfferLetter(verifyResponse);
+	}
+	
+	@Title("Generate testdata")
+	@WithTags({@WithTag("data")})
+	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+	@Test()
+	public void test043() throws IOException {
+		//	new authPlatformTest().UserSignup(verifyResponse);
+
+	}
+	
+	@Title("Generate execution")
+	@WithTags({@WithTag("dyexe")})
+	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+	@Test()
+	public void test044() throws IOException {
+		int executioncount= 1;
+		String EP_Project_id="";
+		String EP_WF_Execution_source_id="";
+		new IhomsPlatformTest().createDynamicExecutions(verifyResponse,executioncount,EP_Project_id,EP_WF_Execution_source_id);
+
+	}
+	
+	@Title("Generate execution")
+	@WithTags({@WithTag("static")})
+	@WithTagValuesOf({"level:Feature", "feature:wos", "story:Listing"})
+	@Test()
+	public void test045() throws IOException {
+		int executioncount= 5000;
+		String EP_Project_id="";
+		String EP_WF_Execution_source_id="";
+		new IhomsPlatformTest().createStaticExecutions(verifyResponse,executioncount,EP_Project_id,EP_WF_Execution_source_id);
+
+	}
 }

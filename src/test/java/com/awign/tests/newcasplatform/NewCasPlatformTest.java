@@ -9,6 +9,13 @@ import com.awign.utilities.ApiMethod;
 import io.restassured.response.Response;
 import steps.VerificationSteps;
 
+
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
+
+
 //@FixMethodOrder(MethodSorters.DEFAULT)
 //@CucumberOptions( plugin = { “usage” }) //it will record time taken for each step definition. 
 //@story(Application.AppNavigation.NavigationMenu.class)

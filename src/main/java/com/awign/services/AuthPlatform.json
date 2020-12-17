@@ -1,6 +1,20 @@
 {
 "services": [
 	{
+        "healthCheck": {
+            "httpMethod": "GET",
+            "uri": "https://auth-api.awigntest.com/",
+		    "apiHeader":[],
+		    "loginuser":"",
+		    "extractResponse":["status","healthy"],
+		    "statusCode": 200,
+            "requestBody": {},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}
+	},
+	{
         "verifyMobileNumberRegistered" :{
             "ApiDescription": " Verify whether phone number is already registered with Awign.",
             "user":"",
@@ -33,8 +47,8 @@
         "NewClient_sign_up" :{
            "httpMethod": "POST",
             "uri": "https://auth-api.awigntest.com/client/auth/email/sign_up",
-		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language","uid","client","access-token"],
-		    "extractResponse":["usr_id","org_id","org_name","access-token","client","uid"],
+		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
+		    "extractResponse":["usr_id","access-token","client","uid","loginuserid","ih_oms_id"],
 			"statusCode": 201,
             	"requestBody": {
 				"user":{"name":"testqaprojectddd","email":"partheebantest.moorthyonetestee@awign.com","contact":"9001399455"},"organisation":{"name":"testawigncomptesttasdf","domain":"testawigncomptesttwoasdf"}		
@@ -83,7 +97,7 @@
          "Member_login":{
             "httpMethod": "POST",
             "uri": "https://auth-api.awigntest.com/central/auth/email/sign_in",
-		    "extractResponse":["usr_id","access-token","client","uid"],
+		    "extractResponse":["ad_uid","ad_client","adaccesstoken"],
 		   	"apiHeader":["Content-Type","authority","orgin","referer","accept-language"],
             "statusCode": 200,         
 			"requestBody": {"user":{"email":"int-ce@example.com","password":"111111"}},
@@ -124,6 +138,6 @@
         
         }
      
-       } 
+       }
   ]
 }

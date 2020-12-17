@@ -3,13 +3,19 @@ import java.util.Random;
 import java.util.logging.Logger;
 import org.apache.commons.lang3.RandomStringUtils;
 
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
+
+
 public class TestDataGenerator {
 
     public Logger logger = Logger.getLogger(this.getClass().getSimpleName());
 
     public String generateRandomMobileNumber() {
         Random rand = new Random();
-        long mob = 9000000000l;
+        long mob = 9355600000l;
         int rand1 = rand.nextInt(1000);
         mob = mob + rand1;
         String mobileNumber = Long.toString(mob);
@@ -19,7 +25,7 @@ public class TestDataGenerator {
 
     public String generateRandomName() {
         String random = RandomStringUtils.randomAlphabetic(8);
-        return "test" + random;
+        return "testh" + random;
     }
     
     public String generateRandomEmail() {
@@ -28,12 +34,11 @@ public class TestDataGenerator {
         random = random.concat("@");
         String compemail = RandomStringUtils.randomAlphabetic(3);
         email = email.concat(random).concat(compemail).concat(".com");
-        return "testawith"+email;
-
+        return "testh"+email;
     }
-
+    
     public String generateRandomDomainName() {
-        String random = RandomStringUtils.randomAlphabetic(8).toLowerCase();
-        return random;
+        String random = RandomStringUtils.randomAlphabetic(10).toLowerCase();
+        return "tdh"+random;
     }
 }

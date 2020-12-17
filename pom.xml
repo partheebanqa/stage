@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.awign.backup</groupId>
-  <artifactId>AWServiceAutomation</artifactId>
+  <artifactId>AWServiceAutomationnew</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -137,11 +137,10 @@
                 <version>${maven.failsafe.plugin.version}</version>
                 <configuration>
                     <includes>
-                        <include>**/*.java</include>
+                        <include>**/tests/*.java</include>
                     </includes>
                     <reuseForks>false</reuseForks>
-                                        
-                                                <systemPropertyVariables>
+                    <systemPropertyVariables>
                 <systemPropertyVariables>
                   <testname>${servicename}</testname>
                     <testid>${apiname}</testid> 

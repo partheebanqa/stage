@@ -1,5 +1,20 @@
 {
 	"services": [
+	
+		{
+        "healthCheck": {
+            "httpMethod": "GET",
+            "uri": "https://ih-oms-api.awigntest.com/",
+		    "apiHeader":[],
+		    "loginuser":"",
+		    "extractResponse":["status","healthy"],
+		    "statusCode": 200,
+            "requestBody": {},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}
+	},
 	{
         "addRequirement": {
             "httpMethod": "POST",
@@ -58,10 +73,10 @@
             "httpMethod": "GET",
             "uri": "https://ih-oms-api.awigntest.com/projects/api/v1/projects/PROJECT_ID",
             "loginuser":"int-moderator@example.com",
-            "extractResponse":["ep_Executive_execution_sources_id"],	       
+            "extractResponse":["ep_Executive_execution_sources_id","project_role_id"],	       
 		    "apiHeader":["Content-Type","authority","orgin","referer","accept-language","uid","client","access-token"],
             "statusCode": 200,
-           	"requestBody": {"conditions":[{"client_requirement_id":{"operator":"eq","value":"5e59d8f1ec4f153fd932a1ad"},"_project_type":{"operator":"eq","value":"Due Diligence"}}],"sort_order":"asc","sort_column":"created_at","limit":1},
+           	"requestBody": {},
             "responseCheck":[],
 	       	"scenarioFlow": "",
 	       	"active": true
@@ -97,7 +112,252 @@
 	       	"active": true
            	       
         }
-  }
+  } ,{
+        "patchOfferLetterES": {
+            "httpMethod": "PATCH",
+           	"loginuser":"int-ce@example.com",
+            "uri": "https://ih-oms-api.awigntest.com/projects/api/v1/requirements/REQUIREMENT_ID/execution_projects",
+		    "extractResponse":[],	    
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+            "statusCode":200,
+           	"requestBody": {"project":{"name":"Ep for testmpp","description":"ASDF","_project_type":"execution","lead_label":"ADF","lead_action_label":"ADS","client_requirement_id":"5e5f9217ec4f156ff36851a6","project_owners":[2500131]}},
+            "responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+           	       
+        }
+  },
+  {       
+	 "setOfferLetterforES": {
+            "httpMethod": "PATCH",
+            "_comment": "",
+            "uri": "https://ih-oms-api.awigntest.com/projects/api/v1/projects/EXECUTION_PROJECT_ID/project_roles/PROJECTROLE/execution_sources/EXECUTION_SOURCE",
+            "loginuser":"int-moderator@example.com",
+            "extractResponse":[],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"execution_source":{"offer_letter_templates":{"default":{"url":"16HlvsFeYrTT_cTUqpkGIY-l_fB5GAmpxZuiqXJiYHNw"}}}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+  {       
+	 "offExecutionMemberSearch": {
+            "httpMethod": "POST",
+            "_comment": "",
+            "uri": "https://ih-oms-api.awigntest.com/office/api/v1/members/WFMEMBERID/executions/workforce/search",
+            "loginuser":"partheeban.moorthy@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"conditions":[{"_status":{"operator":"in","value":["approved","started","submitted","extended","duration_extended","halted"]}}],"page":1},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+  {       
+	 "acceptOfferLetter": {
+            "httpMethod": "PATCH",
+            "_comment": "",
+            "uri": "https://ih-oms-api.awigntest.com/office/api/v1/workforce/projects/EPProjectID/executions/WFEXECUTIONID/accept_offer_letter",
+            "loginuser":"",
+            "extractResponse":[],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"conditions":[{"_status":{"operator":"in","value":["approved","started","submitted","extended","duration_extended","halted"]}}],"page":1},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+  {       
+	 "memberExecutionSearch": {
+            "httpMethod": "POST",
+            "_comment": "WFMEMBERID",
+            "uri": "https://ih-oms-api.awigntest.com/office/api/v1/members/WFMEMBERID/executions/workforce/search",
+            "loginuser":"partheeban.moorthy@awign.com",
+            "Ep_id":"",
+            "extractResponse":[],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"conditions":[{"_status":{"operator":"in","value":["approved","started","submitted","extended","duration_extended","halted"]},"_id":{"operator":"eq","value":"5fc1388b6b7016002441e634"}}],"page":1},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+  {       
+	 "projectLeadAttributeSearch": {
+            "httpMethod": "POST",
+            "_comment": "",
+            "uri": "https://ih-oms-api.awigntest.com/projects/api/v1/projects/5fc137b26b7016002441e619/lead_attributes/search",
+            "loginuser":"partheeban.moorthy@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"limit":2000,"sort_order":"asc"},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+  {       
+	 "leadAnalyze": {
+            "httpMethod": "POST",
+            "_comment": "",
+            "uri": "https://ih-oms-api.awigntest.com/office/api/v1/executions/5fc1388b6b7016002441e634/project_roles/5fc137b26b7016002441e61b/leads/analyze",
+            "loginuser":"partheeban.moorthy@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"conditions":[{}]},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	}
+	,
+  {       
+	 "filterview": {
+            "httpMethod": "GET",
+            "_comment": "",
+            "uri": "https://ih-oms-api.awigntest.com/office/api/v1/executions/5fc1388b6b7016002441e634/project_roles/5fc137b26b7016002441e61b/filter_view",
+            "loginuser":"partheeban.moorthy@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"conditions":[{}]},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	}	,
+  {       
+	 "ListViewSearch": {
+            "httpMethod": "POST",
+            "_comment": "",
+            "uri": "https://ih-oms-api.awigntest.com/office/api/v1/workforce/executions/5fc1388b6b7016002441e634/project_roles/5fc137b26b7016002441e61b/list_views/search",
+            "loginuser":"partheeban.moorthy@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":["Content-Type","uid","client","access-token"],
+			"statusCode": 200,
+            "requestBody": {"limit":1000},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+  {       
+	 "addExecutions": {
+            "httpMethod": "POST",
+            "_comment": "",
+            "uri": "https://ih-oms-api.awigntest.com/projects/api/v1/projects/5fb79bd26b70160051dd444c/members/MEMBERID/project_roles/5fb79bd26b70160051dd444e/executions/",
+            "loginuser":"sumit@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":["projectorgin","Content-Type","Connection","Accept-Encoding","Accept","ad_uid","ad_client","adaccesstoken"],
+			"statusCode": 200,
+            "requestBody": {"execution":{"_status":"started"}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+  {       
+	 "addExecutionsActive": {
+            "httpMethod": "POST",
+            "_comment": "",
+            "uri": "https://ih-oms-api.awigntest.com/office/api/v1/members/MEMBERID/execution_sources/5fc553ea6b70160051138f1b/executions",
+            "loginuser":"sumit@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":["projectorgin","Content-Type","Connection","Accept-Encoding","Accept","ad_uid","ad_client","adaccesstoken"],
+			"statusCode": 200,
+            "requestBody": {"execution":{"_status":"started"}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	}
+	,
+  {       
+	 "createLead": {
+            "httpMethod": "PATCH",
+            "_comment": "",
+            "uri": "https://ih-oms-api.awigntest.com/office/api/v1/workforce/executions/5fbb78036b70160022e89f75/screens/5f2968656b7016002cdb22ec/leads/5fcfba000304bf006582a798/status",
+            "loginuser":"sumit@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":["projectorgin","Content-Type","Connection","Accept-Encoding","Accept","ad_uid","ad_client","adaccesstoken"],
+			"statusCode": 200,
+            "requestBody": {"lead":{"_status":"allocated"}},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}		
+	},
+  {       
+	 "bulkAllocate": {
+            "httpMethod": "PATCH",
+            "_comment": "assigned to sumit , po: sumit",
+            "uri": "https://ih-oms-api.awigntest.com/office/api/v1/workforce/executions/5fbb78036b70160022e89f75/project_roles/5f2964b56b70160024db22e4/list_views/5f2968276b70160024db22fc/blocks/5f2967046b7016002cdb22e3/leads/bulk_allocate",
+            "loginuser":"sumit@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":["projectorgin","Content-Type","Connection","Accept-Encoding","Accept","ad_uid","ad_client","adaccesstoken"],
+			"statusCode": 200,
+            "requestBody": {"allocate":{"role":"Executive","execution_id":"5f2a48636b70160024db2315"},"conditions":[{"id":{"operator":"in","value":["5fcfba000304bf006582a798"]}}],"skip_limit":true},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}	
+				
+	},
+  {       
+	 "bulkExport": {
+            "httpMethod": "PATCH",
+            "_comment": "assigned to sumit , po: sumit",
+            "uri": "https://ih-oms-api.awigntest.com/office/api/v1/workforce/executions/5fbb78036b70160022e89f75/project_roles/5f2964b56b70160024db22e4/list_views/5f2968276b70160024db22fc/blocks/5f2967046b7016002cdb22e3/leads/export",
+            "loginuser":"sumit@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":["projectorgin","Content-Type","Connection","Accept-Encoding","Accept","ad_uid","ad_client","adaccesstoken"],
+			"statusCode": 200,
+            "requestBody": {"lead_attributes":["_status","created_at","updated_at","generated_at","allocated_at","submitted_at","image","name","i231","phone_no","hell","location","nested","nest","nam_extracted","num_extracted","nested_nested_name_extracted","nested_nested_number_extracted","number","whats_your_name","imagenested","imagenested_imagenested_i231_extracted","imagenested_imagenested_image_extracted","bridge","bridge_callback","bridge_callback_recordpath_extracted","bridge_callback_caller_extracted","bridge_callback_receiver_extracted","bridge_callback_starttime_extracted","bridge_callback_endtime_extracted","bridge_callback_duration_extracted","bridge_callback_billsec_extracted","bridge_callback_status1_extracted","bridge_callback_status2_extracted","bridge_callback_callerid_extracted","image1","array","i","_assigned","onlygallery","onlycamera","cameragallery","uploadlater","city"],"allocation_headers":{"execution":true,"member":true},"importable":false,"conditions":[{"id":{"operator":"in","value":["5fcfba000304bf006582a798"]}}],"skip_limit":true},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}	
+		}
+      ,
+  {       
+	 "bulkExportAll": {
+            "httpMethod": "PATCH",
+            "_comment": "assigned to sumit , po: sumit",
+            "uri": "https://ih-oms-api.awigntest.com/office/api/v1/workforce/executions/5fbb78036b70160022e89f75/project_roles/5f2964b56b70160024db22e4/list_views/5f2968276b70160024db22fc/blocks/5f2967046b7016002cdb22e3/leads/export",
+            "loginuser":"sumit@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":["projectorgin","Content-Type","Connection","Accept-Encoding","Accept","ad_uid","ad_client","adaccesstoken"],
+			"statusCode": 200,
+            "requestBody": {"lead_attributes":["_status","created_at","updated_at","generated_at","allocated_at","submitted_at","image","name","i231","phone_no","hell","location","nested","nest","nam_extracted","num_extracted","nested_nested_name_extracted","nested_nested_number_extracted","number","whats_your_name","imagenested","imagenested_imagenested_i231_extracted","imagenested_imagenested_image_extracted","bridge","bridge_callback","bridge_callback_recordpath_extracted","bridge_callback_caller_extracted","bridge_callback_receiver_extracted","bridge_callback_starttime_extracted","bridge_callback_endtime_extracted","bridge_callback_duration_extracted","bridge_callback_billsec_extracted","bridge_callback_status1_extracted","bridge_callback_status2_extracted","bridge_callback_callerid_extracted","image1","array","i","_assigned","onlygallery","onlycamera","cameragallery","uploadlater","city"],"allocation_headers":{},"importable":false,"conditions":[{}],"limit":113},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}	
+		},
+  {       
+	 "downloadExportData": {
+            "httpMethod": "GET",
+            "_comment": "assigned to sumit , po: sumit",
+            "uri": "https://awign-staging.s3.ap-south-1.amazonaws.com/inhouse/5fb79bd26b70160051dd444c%202020-12-08%2011%3A52%3A08%20%2B0000.csv",
+            "loginuser":"sumit@awign.com",
+            "extractResponse":[],	             
+		    "apiHeader":[],
+			"statusCode": 200,
+            "requestBody":{},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}	
+				
+	}
        
 ]
 }

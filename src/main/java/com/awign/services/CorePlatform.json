@@ -1,6 +1,20 @@
 {
 "services": [
 	{
+        "healthCheck": {
+            "httpMethod": "GET",
+            "uri": "https://core-api.awign.com/",
+		    "apiHeader":[],
+		    "loginuser":"",
+		    "extractResponse":["status"],
+		    "statusCode": 200,
+            "requestBody": {},
+	       	"responseCheck":[],
+	       	"scenarioFlow": "",
+	       	"active": true
+			}
+	},
+	{
         "sendSMS" :{
             "ApiDescription": " Verify whether phone number is already registered with Awign.",
             "httpMethod": "POST",

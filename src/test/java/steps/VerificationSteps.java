@@ -5,33 +5,35 @@ import io.restassured.response.Response;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Title;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.runner.RunWith;
 import com.awign.dataprovider.BaseController;
+import com.awign.utilities.FileUtil;
 import com.awign.utilities.JsonUtil;
 import com.awign.utilities.ReusableSpecifications;
 
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
 
+
+//Todo: Loop the ep project details and get the execution_source of the workforce. listingsrc_execution_project_id
 
 @RunWith(SerenityRunner.class)
 public class VerificationSteps extends BaseController{
 	   
 	ReusableSpecifications restSpec = new ReusableSpecifications();
 	JsonUtil ju= new JsonUtil();
+	FileUtil futil = new FileUtil();
 	   
 	   @Step
 	   public void verifyResponseContentbyStatuscode(String code) {
 		   if(code.equalsIgnoreCase("200")) {
-			   
-		   }else if (code.equalsIgnoreCase("404")) {
-			   
-		   }
+		   		}else if (code.equalsIgnoreCase("404")) {
+			 }
 	   }
 	   
 	   //Todo
@@ -57,7 +59,6 @@ public class VerificationSteps extends BaseController{
 	   @Step 
 	   public void validateExpectedStatusCode(Response response,int e_statuscode) {
 	       response.then().statusCode(e_statuscode);
-
 	   }
 
 	   @Title("Verify whether search gets results")
@@ -76,7 +77,6 @@ public class VerificationSteps extends BaseController{
 	   @Step
 	   public void searchContentinResponse(Response response) {
 	      response.then().contentType("application/json; charset=utf-8");
-
 	   }
 
 	  
@@ -84,7 +84,6 @@ public class VerificationSteps extends BaseController{
 	   @Step
 	   public void searchstatusinResponse(Response response) {
 	      response.then().statusLine("HTTP/1.1 404 Not Found");
-
 	   }
 	   
 	   @Title("Verify for Valid status code")
@@ -225,7 +224,13 @@ public class VerificationSteps extends BaseController{
 			}
 	        for (String reqobj : extractObj) {
 	            switch (reqobj) {
-	               case "org_id":
+	            
+	            	case "ih_oms_id" :
+             	   			String ih_oms_id = jp.get("data.user.ih_oms_id").toString();
+             	   			jsonTestDataObject.put("ih_oms_id", ih_oms_id);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+             	   			testdata.setIh_oms_id(ih_oms_id);//update
+             	   			break;
+                    case "org_id":
 	            	   		String org_id = jp.get("data.user.memberships[0].org_id").toString();
 	            	   		jsonTestDataObject.put("org_id", org_id);
 	            	   		testdata.setOrg_id(org_id);
@@ -248,14 +253,31 @@ public class VerificationSteps extends BaseController{
 	                case "usr_id":
 	                		String usr_id = jp.get("data.user.id").toString();
 	                	    jsonTestDataObject.put("usr_id", usr_id);
+	                	    testdata.setUsr_id(usr_id);
 	    					break;     
 	                case "uid":
 	                		String uid=jp.get("data.headers.uid").toString();
 	                	    jsonTestDataObject.put("uid", uid);            
 	                	    testdata.setUid(uid);
-	                	    break;       
+	                	    break;
+	                case "ad_uid":
+                			String ad_uid=jp.get("data.headers.uid").toString();
+                			jsonTestDataObject.put("ad_uid", ad_uid);            
+                			testdata.setAd_uid(ad_uid);
+                			break;   
+                	    
+	                case "ad_client":
+                			String ad_client = jp.get("data.headers.client").toString();
+                			jsonTestDataObject.put("ad_client", ad_client);
+                			testdata.setAd_client(ad_client);
+                			break;
+            	    	
+	                case "adaccesstoken":
+                    		String adaccesstoken=jp.get("data.headers.access-token").toString();
+                    		jsonTestDataObject.put("adaccesstoken", adaccesstoken);
+                    		testdata.setAdaccesstoken(adaccesstoken);
+                    		break;
 	                case "req_id":
-	                	System.out.println("hello 2");
 	                		String  req_id = jp.get("data.client_requirement._id").toString();
 	                		jsonTestDataObject.put("req_id", req_id);
 	                		testdata.setReq_id(req_id);
@@ -326,8 +348,13 @@ public class VerificationSteps extends BaseController{
 							jsonTestDataObject.put("ep_Executive_execution_sources_id", ep_Executive_execution_sources_id);
 							testdata.setEp_Executive_execution_sources_id(ep_Executive_execution_sources_id);
 							break;
+	                case "project_role_id":
+	                		String project_role_id = jp.get("data.project.execution_sources[0].project_role_id").toString();
+	                		jsonTestDataObject.put("project_wf_role_id", project_role_id);
+	                		testdata.setEp_wf_project_role_id(project_role_id);
+					
 	                case "ep_projectowner_execution_sources_id": //The roles which we create a EP, generally it will be executive and po
-							String ep_projectowner_execution_sources_id = jp.get("data.project.execution_sources[1]._id").toString();
+							String ep_projectowner_execution_sources_id = jp.get("data.project.execution_sources[0]._id").toString();
 							jsonTestDataObject.put("ep_projectowner_execution_sources_id", ep_projectowner_execution_sources_id);
 							testdata.setEp_projectowner_execution_sources_id(ep_projectowner_execution_sources_id);
 							break;
@@ -341,7 +368,25 @@ public class VerificationSteps extends BaseController{
 	                		String newlycreated_listing_id = jp.get("id").toString();
 	                		jsonTestDataObject.put("newly_created_listing_id", newlycreated_listing_id);
 	                		testdata.setNewly_created_listing_id(newlycreated_listing_id);
-	            }
+	                		break;
+	                case "loginuserid":
+	                	   String loginuserid = jp.get("data.user.id").toString();
+	                	   jsonTestDataObject.put("loginuserid", loginuserid);
+	                	   testdata.setLoginuserid(loginuserid);
+	                	   break;
+	              
+	                case "supply_id" :
+	                	   String supply_id = jp.get("data.user.supply_id").toString();
+	                	   jsonTestDataObject.put("supply_id", supply_id);
+	                	   testdata.setSupply_id(supply_id);//update
+	                	   break;
+	                      	//add execution_id. //search with respect to member and get th execution.
+	                case "application_id":
+	                	   String application_id = jp.get("id").toString();
+	                	   jsonTestDataObject.put("application_id", application_id);
+	                	   testdata.setApplication_id(application_id);
+	                	   break;
+	              	}
 	        }
 			System.out.println("--------------Update test data:\t "+ jsonTestDataObject);
 		}
@@ -349,15 +394,16 @@ public class VerificationSteps extends BaseController{
 	   	
 	   	public void printReferenceUrls() {
 	   		try {
-	   		String projExecution_id = jsonTestDataObject.getString("executionproject_id");
-	   		String listing_id = jsonTestDataObject.getString("newly_created_listing_id");
-	   		
-	   		String listingurl ="https://listings.awigntest.com/projects/listingsrc_execution_project_id/listings/newly_created_listing_id/edit?category=listingDetails&tab=basicDetails";
-	   		listingurl = listingurl.replace("listingsrc_execution_project_id", projExecution_id);
-	   		listingurl = listingurl.replace("newly_created_listing_id", listing_id);
-	   		System.out.println("Requirement name \t :");
-	   		System.out.println("EP Project name \t :");
-	   		System.out.println("Refer Listing URL : \t "+listingurl);
+			   		String projExecution_id = jsonTestDataObject.getString("executionproject_id");
+			   		String listing_id = jsonTestDataObject.getString("newly_created_listing_id");
+			   		String listingurl ="https://listings.awigntest.com/projects/listingsrc_execution_project_id/listings/newly_created_listing_id/edit?category=listingDetails&tab=basicDetails";
+			   		String Bpulr ="https://projects.awigntest.com/projects/billing/5fc0a7c76b70160043b46c88";
+			   		String Epulr ="https://projects.awigntest.com/projects/execution/5fc0b9226b7016002bb46c86\n" ;
+			   		listingurl = listingurl.replace("listingsrc_execution_project_id", projExecution_id);
+			   		listingurl = listingurl.replace("newly_created_listing_id", listing_id);
+			   		System.out.println("Requirement name \t :");
+			   		System.out.println("EP Project name \t :");
+			   		System.out.println("Refer Listing URL : \t "+listingurl);
 	   		}catch(Exception e) {}
 	   	}
 	  
@@ -376,15 +422,95 @@ public class VerificationSteps extends BaseController{
 					testdata.setclone_listing_id(listing_id);
 					System.out.println("Listing found for the project:\t"+listing_id);
 					break;
-			
 					}else {
 						System.out.println("No listing found with Approved and Active status");
 					}
-			
+				}
 			}
-		
-		}
 	   	
+	   public void extractExecutionofMember(Response response) {
+		   JSONObject jo = new JSONObject(response.getBody().asString());
+		   JSONObject execution = new JSONObject(jo.get("data").toString());
+		   String searchEPProject_id =null;
+		   String testdataEPProject_id = null;
+		   
+		   try {
+			   
+			   System.out.println("oooooooooooooooooooooooooooooooooooooooooooo");
+			   testdataEPProject_id =  jsonTestDataObject.getString("executionproject_id");
+			   System.out.println("oooooooooooooooooooooooooooooooooooooooooooo"+testdataEPProject_id);
+
+	/*		 //  getExecutions(executions,testdataEPProject_id);
+		   }catch(Exception e) {e.printStackTrace();}
+		
+		  if(!(searchEPProject_id==null)&&(searchEPProject_id.length()>0)) { //if user passed  executionid/
+		  System.out.println("=------------------No Execution id given by user");
+		  searchEPProject_id = searchEPProject_id;
+		//  getExecutions(executions,searchEPProject_id); 
+
+		  }else if (!(testdataEPProject_id==null)&&((testdataEPProject_id.length()>0))){ //pass  the testdata execution_id. 
+			  System.out. println("=------------------Execution id present in test data factory");*/
+			  
+			
+					 JSONArray serviceApi = new JSONArray(execution.get("executions").toString());
+					 for (int j = 0; j < serviceApi.length(); j++) { 
+					 JSONObject fields = serviceApi.getJSONObject(j); 
+				 		if(fields.getString("project_id").equals(testdataEPProject_id)){
+				 		System.out.println("Project name:\t "+ fields.getString("project_name") +"\t Proj id \t"+ fields.getString("project_id") +"\t Exe id:: \t"+fields.getString("_id")); 
+				 		jsonTestDataObject.put("WFProj_execution_id", fields.getString("_id"));
+				 		testdata.setWFProj_execution_id(fields.getString("_id"));
+			 			System.out.println("--------------Update test data:\t "+ jsonTestDataObject);
+				 		return;
+				 		 }   
+				       }
+		           }
+	   catch(Exception e) {}  
+			  
+		/*	  
+			  
+		//  getExecutions(executions,testdataEPProject_id); 
+		  }else { 
+			  System.out.println("=------------------No Execution id present in Test data factory and input" ); 
+			  
+			  
+		//  getExecutions(executions,searchEPProject_id);//return the recent   execution. }
+		 
+	   }
+	   */
+	   }
+	/*
+	 * public void getExecutions(JSONObject execution,String epproject_id) { if
+	 * (epproject_id==null) { JSONArray serviceApi = new
+	 * JSONArray(execution.get("executions").toString()); for (int j = 0; j <
+	 * serviceApi.length(); j++) { JSONObject fields = serviceApi.getJSONObject(j);
+	 * System.out.println("Project name:\t "+ fields.getString("project_name")
+	 * +"\t Proj id \t"+ fields.getString("project_id")
+	 * +"\t Exe id:: \t"+fields.getString("_id"));
+	 * jsonTestDataObject.put("WFProj_execution_id", fields.getString("_id"));
+	 * testdata.setWFProj_execution_id(fields.getString("_id"));
+	 * testdata.setEp_name(fields.getString("project_name")); //Setting ep
+	 * project_name
+	 * jsonTestDataObject.put("ep_name",fields.getString("project_name"));
+	 * testdata.setExecutionproject_id(fields.getString("project_id")); //set
+	 * execution project_id jsonTestDataObject.put("executionproject_id",
+	 * fields.getString("project_id"));
+	 * System.out.println(" --------------Update test data:\t "+
+	 * jsonTestDataObject); return; } } else{ try { JSONArray serviceApi = new
+	 * JSONArray(execution.get("executions").toString()); for (int j = 0; j <
+	 * serviceApi.length(); j++) { JSONObject fields = serviceApi.getJSONObject(j);
+	 * if(fields.getString("project_id").equals(epproject_id)){
+	 * System.out.println("Project name:\t "+ fields.getString("project_name")
+	 * +"\t Proj id \t"+ fields.getString("project_id")
+	 * +"\t Exe id:: \t"+fields.getString("_id"));
+	 * jsonTestDataObject.put("WFProj_execution_id", fields.getString("_id"));
+	 * testdata.setWFProj_execution_id(fields.getString("_id"));
+	 * System.out.println("--------------Update test data:\t "+ jsonTestDataObject);
+	 * return; } } } catch(Exception e) {} } }
+	 */
 	   
+	   public String getihomsid(Response response) {
+		   JsonPath jp = response.jsonPath();
+		   return jp.get("data.user.ih_oms_id").toString();
+	   }
 
 	}

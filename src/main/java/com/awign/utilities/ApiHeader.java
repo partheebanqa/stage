@@ -1,9 +1,14 @@
 package com.awign.utilities;
 import io.restassured.builder.RequestSpecBuilder;
 import org.json.JSONArray;
-
 import com.awign.dataprovider.BaseController;
 import com.awign.dataprovider.TestDataFactory;
+
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
+
 
 import java.util.LinkedList;
 
@@ -23,9 +28,12 @@ public class ApiHeader extends BaseController{
                 case "authority":
                 		builder.addHeader("authority","auth-api.awign.com");
                 		break;
-                case "orgin":
+                case "clientorgin":
                 		builder.addHeader("orgin","https://clients.awigntest.com");
                 		break;
+                case "projectorgin":
+            		builder.addHeader("orgin","https://projects.awigntest.com");
+            		break;
                 case "accept-language":
                 	    builder.addHeader("accept-language","en-GB,en-US;q=0.9,en;q=0.8");
                 	    break;
@@ -35,22 +43,18 @@ public class ApiHeader extends BaseController{
                 case "Server":
             	    	builder.addHeader("Server", "nginx/1.10.3 (Ubuntu)");
             	    	break;
-
                 case "X-Frame-Options":
                 		builder.addHeader("X-Frame-Options", "DENY");
                 		break;
-
                 case "X-Content-Type-Options":
             	    	builder.addHeader("X-Content-Type-Options", "nosniff");
             	    	break;
-
                 case "X-XSS-Protection":
             	    	builder.addHeader("X-XSS-Protection", "1; mode=block");
             	    	break;
                 case "Content-Security-Policy":
             	    	builder.addHeader("Content-Security-Policy", "form-action 'self'; frame-ancestors 'self'; base-uri 'self'; default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https:; font-src 'self'; object-src 'none'; plugin-types application/pdf; child-src 'self'; frame-src 'self'; media-src 'self'");
             	    	break;
-
                 case "Vary":
             	    	builder.addHeader("Vary", "Origin");
             	    	break;
@@ -62,8 +66,23 @@ public class ApiHeader extends BaseController{
     					break;     
                 case "uid":
     					builder.addHeader("uid",testdata.getUid());	
-    					break;                	 
-
+    					break;       
+                case "adaccesstoken":
+    					builder.addHeader("access-token",testdata.getAdaccesstoken());	
+    					break;
+                case "ad_client":
+						builder.addHeader("client",testdata.getAd_client());	
+						break;     
+                case "ad_uid":
+						builder.addHeader("uid",testdata.getAd_uid());	
+						break; 
+                case "Accept-Encoding":
+						builder.addHeader("Accept-Encoding","gzip, deflate, br");	
+						break; 
+                case "Accept":
+						builder.addHeader("Accept","*/*");	
+						break;  
+          
 
             }
         }

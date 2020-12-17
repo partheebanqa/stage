@@ -1,5 +1,10 @@
 package com.awign.dataprovider;
 
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
+
 
 public class TestDataFactory {
     private String customerMobileNumber;
@@ -22,18 +27,87 @@ public class TestDataFactory {
 	private String billingproject_id;
 	private String executionproject_id;
 	private String bpep_name;
+	private String ep_name;
 	private String worklistings_id;
-
-
 	private String worklistings_listing_type;
 	private String worklistings_name;
 	private String worklistings_location_type;
 	private String project_execution_source_id;
 	private String ep_Executive_execution_sources_id; //get from getProject using ep id
 	private String ep_projectowner_execution_sources_id; //get from getProject using ep id
+	private String ep_wf_project_role_id;
 	private String listingsrc_execution_project_id; // get from listing search
 	private String clone_listing_id;
 	private String newly_created_listing_id;
+	private String loginuserid;
+	private String ih_oms_id;
+	private String supply_id;
+	private String WFProj_execution_id;
+	private String application_id;
+	
+	private String ad_uid;
+	private String ad_client;
+	private String adaccesstoken;
+	
+
+
+	public String getAd_uid() {
+		return ad_uid;
+	}
+
+	public void setAd_uid(String ad_uid) {
+		this.ad_uid = ad_uid;
+	}
+
+	public String getAd_client() {
+		return ad_client;
+	}
+
+	public void setAd_client(String ad_client) {
+		this.ad_client = ad_client;
+	}
+
+	public String getAdaccesstoken() {
+		return adaccesstoken;
+	}
+
+	public void setAdaccesstoken(String adaccesstoken) {
+		this.adaccesstoken = adaccesstoken;
+	}
+
+	public String getLoginuserid() {
+		return loginuserid;
+	}
+
+	public void setLoginuserid(String loginuserid) {
+		this.loginuserid = loginuserid;
+	}
+	
+	
+	public String getIh_oms_id() {
+		return ih_oms_id;
+	}
+
+	public void setIh_oms_id(String ih_oms_id) {
+		this.ih_oms_id = ih_oms_id;
+	}
+
+	public String getSupply_id() {
+		return supply_id;
+	}
+
+	public void setSupply_id(String supply_id) {
+		this.supply_id = supply_id;
+	}
+
+	public String getWFProj_execution_id() {
+		return WFProj_execution_id;
+	}
+
+	public void setWFProj_execution_id(String wFProj_execution_id) {
+		WFProj_execution_id = wFProj_execution_id;
+	}
+
 
 	public String getEp_projectowner_execution_sources_id() {
 		return this.ep_projectowner_execution_sources_id;
@@ -43,7 +117,6 @@ public class TestDataFactory {
 		this.ep_projectowner_execution_sources_id = ep_projectowner_execution_sources_id;
 	}
 
-
 	public String getclone_listing_id() {
 		return this.clone_listing_id;
 	}
@@ -51,8 +124,6 @@ public class TestDataFactory {
 	public void setclone_listing_id(int clone_listing_id) {
 		this.clone_listing_id = String.valueOf(clone_listing_id);
 	}
-
-	
 
 	public String getListingsrc_execution_project_id() {
 		return this.listingsrc_execution_project_id;
@@ -134,13 +205,6 @@ public class TestDataFactory {
 		this.uid = uid;
 	}
 
-
-
-
-	
-
-    
-    
     public String getUsr_id() {
 		return this.usr_id;
 	}
@@ -149,8 +213,7 @@ public class TestDataFactory {
 		this.usr_id = usr_id;
 	}
 
-    
-	public String getUsr_cookie() {
+  	public String getUsr_cookie() {
 		return this.usr_cookie;
 	}
 
@@ -278,9 +341,6 @@ public class TestDataFactory {
 		this.worklistings_location_type = worklistings_location_type;
 	}
 
-
-
-    
     @Override
     public String toString() {
         return " {" +
@@ -294,6 +354,30 @@ public class TestDataFactory {
 
 	public void setNewly_created_listing_id(String newly_created_listing_id) {
 		this.newly_created_listing_id = newly_created_listing_id;
+	}
+
+	public String getEp_name() {
+		return ep_name;
+	}
+
+	public void setEp_name(String ep_name) {
+		this.ep_name = ep_name;
+	}
+
+	public String getEp_wf_project_role_id() {
+		return ep_wf_project_role_id;
+	}
+
+	public void setEp_wf_project_role_id(String ep_wf_project_role_id) {
+		this.ep_wf_project_role_id = ep_wf_project_role_id;
+	}
+
+	public String getApplication_id() {
+		return application_id;
+	}
+
+	public void setApplication_id(String application_id) {
+		this.application_id = application_id;
 	}    
-    
+	
 }

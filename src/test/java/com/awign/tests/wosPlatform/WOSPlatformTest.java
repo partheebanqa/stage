@@ -19,6 +19,12 @@ import steps.VerificationSteps;
 //ToDo
 //Search listinig: update the body with the varial and pass the value.
 
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
+
+
 
 public class WOSPlatformTest extends BaseController{
 	 public static BaseController basecontroller = new BaseController();	 
@@ -28,8 +34,7 @@ public class WOSPlatformTest extends BaseController{
 		basecontroller.setBaseData();
 	
 	}
-
-		
+		@SuppressWarnings("null")
 		@Title("Search a listing to clone from a existing listing to a new Execution project: with Reference to project")
 		public void searchListings(VerificationSteps verifyResponse) throws IOException {
 			String apiname= "searchListings";
@@ -73,6 +78,7 @@ public class WOSPlatformTest extends BaseController{
 		}
 		
 		
+		@SuppressWarnings({ "null", "unused" })
 		@Title("get Listing details")
 		public void getListing(VerificationSteps verifyResponse) throws IOException {
 			String apiname= "getListing";
@@ -121,6 +127,7 @@ public class WOSPlatformTest extends BaseController{
 		}
 
 		
+		@SuppressWarnings("null")
 		@Title("Add listing to the newly created EP by cloning from existing listing.")
 		public void addListing(VerificationSteps verifyResponse) throws IOException {
 			String apiname = "addListing";
@@ -201,7 +208,6 @@ public class WOSPlatformTest extends BaseController{
 			JSONObject worklistingObj  = requestObj.getJSONObject("requestBody").getJSONObject("worklisting");
 			String epproject = jsonTestDataObject.getString("executionproject_id");
 			worklistingObj.put("execution_project_id", epproject);
-			System.out.println("\t ------------------hello");
 		//	requestObj.put("requestBody", worklistingObj);
 			requestObj.put("uri", uri_update);
 		
@@ -223,6 +229,779 @@ public class WOSPlatformTest extends BaseController{
 	       //	System.out.println("------------"+response.asString());   
 			  
 		}
+		
+		//updateListingBasicDetails
+		@SuppressWarnings("null")
+		@Title("Add listing basic details")
+		public void updateListingBasicDetails(VerificationSteps verifyResponse) throws IOException {
+			String apiname = "updateListingBasicDetails";
+			String serviceName ="wos";
+	        JSONObject requestObj = new JSONObject();
+	        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+			System.out.println("Request Object :\t"+requestObj);
+			
+			String uri_update = null; 
+			
+			//Get Authentication:
+			try {
+			String login_email = requestObj.getString("loginuser").toString();
+			if(!(login_email== null) || login_email.isEmpty()) {
+				new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+			}	
+			}catch(Exception e) {}
+			
+			try {
+				String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+				System.out.println("Newly Created Listing_id"+ worklistings_id);
 
+				if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+				uri_update = requestObj.getString("uri").toString();
+				uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+				System.out.println("Updated uri"+ uri_update);
+				}
+			}catch(Exception e) {}
+		
+			JSONObject worklistingObj  = requestObj.getJSONObject("requestBody").getJSONObject("worklisting");
+			String epproject = jsonTestDataObject.getString("executionproject_id");
+			worklistingObj.put("execution_project_id", epproject);
+		//	requestObj.put("requestBody", worklistingObj);
+			requestObj.put("uri", uri_update);
+		
+			System.out.println(apiname + " Update uri" + uri_update);
+	        System.out.println(apiname + " Request Object:\t" +requestObj);
+	       	Response response = new ApiMethod().httpMethod(requestObj);
+	       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+	       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+	        //	System.out.println("------------"+response.asString());   
+			  
+		}
+		
+		//updateListingLocationDetails
+				@SuppressWarnings("null")
+				@Title("Add listing location details")
+				public void updateListingLocationDetails(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "updateListingLocationDetails";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
 
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+				
+				//updateListingEarningsDetails
+				@SuppressWarnings("null")
+				@Title("Add listing Earnings Details")
+				public void updateListingEarningsDetails(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "updateListingEarningsDetails";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+
+				//updateListingDescriptionDetails
+				@SuppressWarnings("null")
+				@Title("Add listing Description details.")
+				public void updateListingDescriptionDetails(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "updateListingDescriptionDetails";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+
+				//Review Listing Basic details
+				@SuppressWarnings("null")
+				@Title("Review listing basic details.")
+				public void reviewListingBasicDetails(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "reviewListingBasicDetails";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+				
+				//Review Listing Location details
+				@SuppressWarnings("null")
+				@Title("Review listing Location details.")
+				public void reviewListingLocationDetails(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "reviewListingLocationDetails";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+				
+				//Review Listing Earnings details
+				@SuppressWarnings("null")
+				@Title("Review listing Earnings details.")
+				public void reviewListingEarningsDetails(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "reviewListingEarningsDetails";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+
+				//Review Listing Description details
+				@SuppressWarnings("null")
+				@Title("Review listing Description details.")
+				public void reviewListingDescriptionDetails(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "reviewListingDescriptionDetails";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+				
+				//Add Listing Application configuration  details
+				@SuppressWarnings("null")
+				@Title("Add listing Applications questions config details.")
+				public void ListingApplicationConfiguration(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "ListingApplicationConfiguration";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+				
+				//Listing Application question configure.
+				@SuppressWarnings("null")
+				@Title("listing Applications questions configure.")
+				public void listingApplicationsQuestionsConfigure(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "listingApplicationsQuestionsConfigure";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+				
+				//Review Application question.
+				@SuppressWarnings("null")
+				@Title("Review Applications questions.")
+				public void reviewApplicationsQuestionsDetails(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "reviewApplicationsQuestionsDetails";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+				
+				//Review Application question.
+				@SuppressWarnings("null")
+				@Title("ListingAddExecutionSource_id")
+				public void ListingAddExecutionSource_id(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "ListingAddExecutionSource_id";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+					
+						//Updating request body
+						JSONObject jsonObject=  (JSONObject) requestObj.get("requestBody");
+						JSONObject worklistingObject=  (JSONObject) jsonObject.get("worklisting");
+						worklistingObject.put("project_execution_source_id", testdata.getEp_Executive_execution_sources_id());
+						System.out.println(apiname + "\tRequest Object" +requestObj);
+
+						}
+					}catch(Exception e) {}
+					
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+
+				
+				
+
+				//markListingConfigStatus
+				@SuppressWarnings("null")
+				@Title("markListingConfigStatus")
+				public void markListingConfigStatus(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "markListingConfigStatus";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+
+				//markListingUrlStatus
+				@SuppressWarnings("null")
+				@Title("markListingUrlStatus")
+				public void markListingUrlStatus(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "markListingUrlStatus";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+				
+				//markListingPublishingStatus
+				@SuppressWarnings("null")
+				@Title("markListingPublishingStatus")
+				public void markListingPublishingStatus(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "markListingPublishingStatus";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+
+				//publishListing
+				@SuppressWarnings("null")
+				@Title("publishListing")
+				public void publishListing(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "publishListing";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+					//Get Authentication:
+					try {
+					String login_email = requestObj.getString("loginuser").toString();
+					if(!(login_email== null) || login_email.isEmpty()) {
+						new authPlatformTest().getUserAuthentication(verifyResponse, login_email);
+					}	
+					}catch(Exception e) {}
+					
+					try {
+						String worklistings_id = jsonTestDataObject.getString("newly_created_listing_id");
+						System.out.println("Newly Created Listing_id"+ worklistings_id);
+
+						if(!(worklistings_id== null) || worklistings_id.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("LISTING_ID", worklistings_id);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+
+						}
+					}catch(Exception e) {}
+				
+					System.out.println(apiname + " Request Object:\t" +requestObj);
+			       	Response response = new ApiMethod().httpMethod(requestObj);
+			       	System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+			       	verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			        //	System.out.println("------------"+response.asString());   
+					  
+				}
+				
+				
+				//Workforce Apply for a listing.
+				@SuppressWarnings("null")
+				@Title("Workforce Apply for a listing")
+				public void officeApplicationSearch(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "officeApplicationSearch";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+		/*
+		 * //Get Authentication: try { String login_email =
+		 * requestObj.getString("loginuser").toString(); if(!(login_email== null) ||
+		 * login_email.isEmpty()) { new
+		 * authPlatformTest().getUserAuthentication(verifyResponse, login_email); }
+		 * }catch(Exception e) {}
+		 */
+					
+					try {
+						String workforce = jsonTestDataObject.getString("loginuserid");
+						System.out.println("Workforce for whom the listing will be applied."+ workforce);
+
+						if(!(workforce== null) || workforce.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("USERID", workforce);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+											
+						}
+						}catch(Exception e) {e.printStackTrace();}
+				
+						System.out.println(apiname + " Request Object:\t" +requestObj);
+						Response response = new ApiMethod().httpMethod(requestObj);
+						System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+						verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			       		try {
+							JSONArray requiresObj= (JSONArray) requestObj.getJSONArray("extractResponse");
+							//System.out.println("Required Objects which have to be extracted from Response: \t\t"+requiresObj);
+							if(requiresObj.length()>0) {
+								verifyResponse.addResponseAttributestoTestData(requiresObj ,response);
+							}
+							}catch(Exception e) {}
+								  
+				}
+				
+				
+				
+
+				//Workforce Apply for a listing.
+				@SuppressWarnings("null")
+				@Title("Workforce Apply for a listing")
+				public void workforceApplyForAListing(VerificationSteps verifyResponse) throws IOException {
+					String apiname = "workforceApplyForAListing";
+					String serviceName ="wos";
+			        JSONObject requestObj = new JSONObject();
+			        requestObj = jsonUtil.apiJSONReader((jsonUtil.getServiceFilebyName(serviceName)),apiname);
+					System.out.println("Request Object :\t"+requestObj);
+					
+					String uri_update = null; 
+					
+		/*
+		 * //Get Authentication: try { String login_email =
+		 * requestObj.getString("loginuser").toString(); if(!(login_email== null) ||
+		 * login_email.isEmpty()) { new
+		 * authPlatformTest().getUserAuthentication(verifyResponse, login_email); }
+		 * }catch(Exception e) {}
+		 */
+					
+					try {
+						String workforce = jsonTestDataObject.getString("loginuserid");
+						System.out.println("Workforce for whom the listing will be applied."+ workforce);
+
+						if(!(workforce== null) || workforce.isEmpty()) {				
+						uri_update = requestObj.getString("uri").toString();
+						uri_update= uri_update.replace("USERID", workforce);
+						System.out.println("Updated uri"+ uri_update);
+						requestObj.put("uri", uri_update);
+											
+				
+						//Updating request body 
+						JSONObject jsonObject= (JSONObject)requestObj.get("requestBody"); 
+						JSONObject appobj= (JSONObject)jsonObject.get("application"); 
+						//appobj.put("worklisting_id","935"); 
+						appobj.put("worklisting_id",testdata.getNewly_created_listing_id()); 
+						}
+						}catch(Exception e) {e.printStackTrace();}
+				
+						System.out.println(apiname + " Request Object:\t" +requestObj);
+						Response response = new ApiMethod().httpMethod(requestObj);
+						System.out.println(apiname+ " Api Response  \t------------"+response.asString()); 
+						verifyResponse.validateExpectedStatusCode(response,requestObj.getInt("statusCode"));
+			       		try {
+							JSONArray requiresObj= (JSONArray) requestObj.getJSONArray("extractResponse");
+							//System.out.println("Required Objects which have to be extracted from Response: \t\t"+requiresObj);
+							if(requiresObj.length()>0) {
+								verifyResponse.addResponseAttributestoTestData(requiresObj ,response);
+							}
+							}catch(Exception e) {}
+								  
+				}
+				
 }

@@ -7,6 +7,12 @@ import net.serenitybdd.rest.SerenityRest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
+
+
 public class ApiMethod {
 
     public Response httpMethod( JSONObject requestObj) {
@@ -17,14 +23,14 @@ public class ApiMethod {
         serviceUrl = requestObj.getString("uri");   
         
         RequestSpecBuilder builder = new RequestSpecBuilder();
-        if (httpMethod.equalsIgnoreCase("POST") || httpMethod.equalsIgnoreCase("PUT")) {
+        if (httpMethod.equalsIgnoreCase("POST") || httpMethod.equalsIgnoreCase("PUT")|| httpMethod.equalsIgnoreCase("PATCH")) {
             builder.setBody(requestBody);
         }
         RequestSpecification requestSpec = builder.build();
         new ApiHeader().setHeaders( apiHeader, builder);
         RestAssured.useRelaxedHTTPSValidation();
-        
-        System.out.println("Api spec\t"+requestSpec.toString());
+ 
+    //    System.out.println("Final Api Request spec\t"+requestSpec.toString());
         Response response = null;
         try {
         switch (httpMethod) {
@@ -32,18 +38,21 @@ public class ApiMethod {
            	       response = SerenityRest.given().spec(requestSpec).when().post(serviceUrl);
                     break;
             case "PUT":
-        	       		response = SerenityRest.given().spec(requestSpec).when().put(serviceUrl);
-        	       		break;
+        	       	response = SerenityRest.given().spec(requestSpec).when().put(serviceUrl);
+        	       	break;
             case "GET":
        	       		response = SerenityRest.given().spec(requestSpec).when().get(serviceUrl);
        	       		break;
             case "DELETE":
-        	       		response = SerenityRest.given().spec(requestSpec).when().delete(serviceUrl);	
-        	       		break;
+        	       	response = SerenityRest.given().spec(requestSpec).when().delete(serviceUrl);	
+        	       	break;
+            case "PATCH":
+	       			response = SerenityRest.given().spec(requestSpec).when().patch(serviceUrl);
+	       			break;
         }
         }catch(Exception e) {e.printStackTrace();}
-      JSONObject responseBody = null;      
-      responseBody = new JSONObject(response.body().asString());
+  //    JSONObject responseBody = null;      
+    //  responseBody = new JSONObject(response.body().asString());
         return response;
     }
     

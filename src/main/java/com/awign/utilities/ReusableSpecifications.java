@@ -7,6 +7,13 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import static org.hamcrest.Matchers.*;
+
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
+
+
 public class ReusableSpecifications {
 	public static RequestSpecBuilder rspec;
 	public static ResponseSpecBuilder rspecresponse;

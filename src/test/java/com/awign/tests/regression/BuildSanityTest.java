@@ -2,7 +2,6 @@ package com.awign.tests.regression;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
-
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,6 +14,12 @@ import net.thucydides.core.annotations.WithTag;
 import net.thucydides.core.annotations.WithTags;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
+
+/** 
+* @author  Partheeban.moorthy@awign.com
+* @version 1.0 
+*/
+
 
 @RunWith(SerenityRunner.class)
 public class BuildSanityTest {
